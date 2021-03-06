@@ -7,9 +7,15 @@ using UnityEngine.AI;
 
 public class Pedestrian : MonoBehaviour
 {
-    public Transform _target;
+    public Interactable _target;
     public NavMeshAgent _agent;
     public List<GameObject> _checkedTargets;
+    public Animator _anim;
+
+    [NonSerialized]
+    public bool changeState;
+
+    public Dictionary<NPC_InteractableType, IState> newStateDict;
     
     StateMachine stateMachine;
 
@@ -17,15 +23,23 @@ public class Pedestrian : MonoBehaviour
 
     void Start()
     {
-        _target = GetRandomTarget();
-        _agent = this.GetComponent<NavMeshAgent>();
+        stateMachine = new StateMachine();
+        newStateDict = new Dictionary<NPC_InteractableType, IState>();
 
+        _target = GetRandomExit();
+        _agent = this.GetComponent<NavMeshAgent>();
+        _anim = this.GetComponent<Animator>();
         _checkedTargets = new List<GameObject>();
 
-        stateMachine = new StateMachine();
+        
 
 
-        IState moveToTarget = new MoveToTarget(_target, this, _agent);
+        IState moveToTarget = new MoveToTarget(_target, this, _agent, _anim);
+        IState sitAtBus = new SitAtBus(_target, this, _agent, _anim);
+
+
+
+        newStateDict.Add(NPC_InteractableType.BUS_STOP_SEAT, sitAtBus);
 
 
         stateMachine.newState = moveToTarget;
@@ -37,22 +51,37 @@ public class Pedestrian : MonoBehaviour
 
         SearchForNewTarget();
 
+        SetNewState();
         
     }
 
-    
-
-
-    public Transform GetRandomTarget()
+    //Put this inside StateMachine
+    private void SetNewState()
     {
-        int random = UnityEngine.Random.Range(0, GameController.instance.waypoints.Count);
-        Transform newTarget = GameController.instance.waypoints[random];
+        if (changeState)
+        {
+            changeState = false;
+
+            foreach (var entry in newStateDict)
+            {
+               if (entry.Key.Equals(_target.interaction.interactionType))
+               {
+                   stateMachine.newState = entry.Value;
+               }              
+            }
+        }
+
+        return;
+        
+    }
+
+    public Interactable GetRandomExit()
+    {
+        int random = UnityEngine.Random.Range(0, GameController.instance.exits.Count);
+        Interactable newTarget = GameController.instance.exits[random];
         
         return newTarget;
     }
-
-
-
 
     void SearchForNewTarget()
     {
@@ -64,11 +93,12 @@ public class Pedestrian : MonoBehaviour
             if (obj.tag == "Target")
             {
                 int random = UnityEngine.Random.Range(0,10);
-                if (random >= 8 && !_checkedTargets.Contains(obj.gameObject))
+                if (random >= 1 && !_checkedTargets.Contains(obj.gameObject))
                 {
-                    _target = obj.transform;
+                    _target = obj.GetComponent<Interactable>();
+                    _target.isOccupied = true;
                 }
-                else if (random < 8 && !_checkedTargets.Contains(obj.gameObject))
+                else if (random < 1 && !_checkedTargets.Contains(obj.gameObject))
                 {
                     _checkedTargets.Add(obj.gameObject);
                 }

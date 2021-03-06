@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
 
     
-    public List<Transform> waypoints;
+    public List<Interactable> exits;
     
 
     void Awake()

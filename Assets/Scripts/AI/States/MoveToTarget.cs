@@ -5,49 +5,64 @@ using UnityEngine.AI;
 
 public class MoveToTarget : IState
 {
-    Transform target;
+    Interactable target;
+    IState newState = null;
+
+    Interactable interactible;
     protected Pedestrian pedestrian;
     protected NavMeshAgent agent;
+    protected Animator anim;
 
-    public MoveToTarget(Transform _target, Pedestrian _pedestrian, NavMeshAgent _agent)
+    public MoveToTarget(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim)
     {
         target = _target;
         pedestrian = _pedestrian;
         agent = _agent;
+        anim = _anim;
     }
     public void OnEnter()
     {
-        Debug.Log("Entering Move to exit");
-        agent.SetDestination(target.position);
+        Debug.Log("Entering Move to Target");
+
+        anim.SetBool("Walking", true);
+        agent.SetDestination(target.transform.position);
     }
 
 
     public void Tick()
     {
-        Debug.Log("Moving to exit");
+        Debug.Log("Moving to Target");
+
+        
 
         if (pedestrian._target != target)
         {
             Debug.Log("Target changed, setting new destination");
-            target = pedestrian._target;
-            agent.SetDestination(target.position);
+            target = pedestrian._target.GetComponent<Interactable>();
+            agent.SetDestination(target.transform.position);
         }
         
 
-        if (pedestrian._agent.remainingDistance <= 1)
+        if (pedestrian._agent.remainingDistance <= 0.5)
         {
-            if (target.tag.Contains("Exit"))
+            if (target.interaction.interactionType == 0)
             {
+                Debug.Log(interactible.interaction.interactionType);
                 Object.Destroy(pedestrian.gameObject);
+                return;
             }
-
+            
+            pedestrian.changeState = true;
+            Debug.Log("Changed Pedestrian changeState to true");
         }
         
     }
 
     public void OnExit()
     {
-        Debug.Log("exiting move to exit");
+        Debug.Log("exiting move to Target");
+        anim.SetBool("Walking", false);
+        agent.enabled = false;
     }
 
 
