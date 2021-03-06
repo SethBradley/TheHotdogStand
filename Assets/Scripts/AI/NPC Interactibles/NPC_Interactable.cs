@@ -13,7 +13,6 @@ public class NPC_Interactable : ScriptableObject
     public NPC_InteractableType interactionType;
 
     public Vector3 orientation;
-    public Vector3 sitPosition;
 
 
 

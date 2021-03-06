@@ -9,6 +9,12 @@ public class SitAtBus : IState
     private Pedestrian pedestrian;
     private NavMeshAgent agent;
     private Animator anim;
+    float x = 0f;
+    Vector3 startRotation;
+    Vector3 newRotation;
+    Vector3 startPosition;
+    Vector3 newPosition;
+ 
 
     public SitAtBus(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim)
     {
@@ -22,7 +28,16 @@ public class SitAtBus : IState
         //agent.isStopped = true;
         Debug.Log("Beginning to wait at bus");
         anim.SetBool("Sit", true);
-        OrientToSeat();
+        
+
+        startRotation = pedestrian.transform.rotation.eulerAngles;
+        newRotation = pedestrian._target.interaction.orientation;
+
+        startPosition = pedestrian.transform.position;
+        newPosition = pedestrian._target.position;;
+
+       
+        
         
 
     }
@@ -30,6 +45,7 @@ public class SitAtBus : IState
     public void Tick()
     {
         Debug.Log("Waiting at bus");
+        OrientToSeat();
        
         
     }
@@ -37,19 +53,19 @@ public class SitAtBus : IState
     public void OnExit()
     {
         Debug.Log("Exiting wait at bus");
-        pedestrian._target.isOccupied = false;
+        pedestrian._target.occupant = null;
     }
 
     void OrientToSeat()
     {
-        Vector3 newRotation = pedestrian._target.interaction.orientation;
-        Vector3 newPosition = pedestrian.transform.position + pedestrian._target.interaction.sitPosition;
+        
+        Vector3 pedestrianLerpRotation = Vector3.Lerp(startRotation, newRotation, x);
+        pedestrian.transform.rotation = Quaternion.Euler(pedestrianLerpRotation);
+        
+        Vector3 pedestrianLerpPosition = Vector3.Lerp(startPosition, newPosition, x);
+        pedestrian.transform.position = pedestrianLerpPosition;
 
-        //Debug.Log(newRotation);
-        pedestrian.transform.position = newPosition;
-        pedestrian.transform.localRotation = Quaternion.Euler(newRotation);
-        // Debug.Log(pedestrian.transform.rotation);
-
+        x += Time.deltaTime * 1.2f;
     }
 
 

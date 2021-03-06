@@ -8,12 +8,14 @@ using UnityEngine.AI;
 public class Pedestrian : MonoBehaviour
 {
     public Interactable _target;
+    public Interactable _exitTarget;
     public NavMeshAgent _agent;
     public List<GameObject> _checkedTargets;
     public Animator _anim;
 
     [NonSerialized]
     public bool changeState;
+    bool searchForTarget = true;
 
     public Dictionary<NPC_InteractableType, IState> newStateDict;
     
@@ -27,6 +29,7 @@ public class Pedestrian : MonoBehaviour
         newStateDict = new Dictionary<NPC_InteractableType, IState>();
 
         _target = GetRandomExit();
+        _exitTarget = _target;
         _agent = this.GetComponent<NavMeshAgent>();
         _anim = this.GetComponent<Animator>();
         _checkedTargets = new List<GameObject>();
@@ -49,7 +52,8 @@ public class Pedestrian : MonoBehaviour
     {
         stateMachine.Tick();
 
-        SearchForNewTarget();
+        if (searchForTarget)
+            SearchForNewTarget();
 
         SetNewState();
         
@@ -84,8 +88,7 @@ public class Pedestrian : MonoBehaviour
     }
 
     void SearchForNewTarget()
-    {
-
+    {     
         Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, 3.0f);
 
         foreach (Collider obj in nearbyTargets)
@@ -93,10 +96,12 @@ public class Pedestrian : MonoBehaviour
             if (obj.tag == "Target")
             {
                 int random = UnityEngine.Random.Range(0,10);
-                if (random >= 1 && !_checkedTargets.Contains(obj.gameObject))
+                if (random >= 1 && !_checkedTargets.Contains(obj.gameObject) && obj.GetComponent<Interactable>().occupant == null)
                 {
                     _target = obj.GetComponent<Interactable>();
-                    _target.isOccupied = true;
+                    _target.occupant = this;
+                    searchForTarget = false;
+                    return;
                 }
                 else if (random < 1 && !_checkedTargets.Contains(obj.gameObject))
                 {
@@ -105,7 +110,8 @@ public class Pedestrian : MonoBehaviour
                 
             }
         }
-    }
+    
+}
 
     
     

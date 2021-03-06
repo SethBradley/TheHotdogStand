@@ -6,7 +6,9 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public NPC_Interactable interaction;
-    public bool isOccupied;
+    public Pedestrian occupant;
+
+    public Vector3 position;
 
 
 }

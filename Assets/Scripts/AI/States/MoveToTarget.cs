@@ -47,7 +47,7 @@ public class MoveToTarget : IState
         {
             if (target.interaction.interactionType == 0)
             {
-                Debug.Log(interactible.interaction.interactionType);
+                
                 Object.Destroy(pedestrian.gameObject);
                 return;
             }
