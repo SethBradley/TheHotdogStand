@@ -8,6 +8,7 @@ TagManager:
   - HotdogStandSlot
   - Target
   - Exit
+  - Condiment
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Road
   - Crosswalk
   - Stairs
-  - 
+  - Stand_Interactable
   - 
   - 
   - 

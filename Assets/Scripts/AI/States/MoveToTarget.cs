@@ -22,7 +22,7 @@ public class MoveToTarget : IState
     }
     public void OnEnter()
     {
-        Debug.Log("Entering Move to Target");
+//        Debug.Log("Entering Move to Target");
 
         anim.SetBool("Walking", true);
         agent.SetDestination(target.transform.position);
@@ -31,7 +31,7 @@ public class MoveToTarget : IState
 
     public void Tick()
     {
-        Debug.Log("Moving to Target");
+//        Debug.Log("Moving to Target");
 
         
 
@@ -60,7 +60,7 @@ public class MoveToTarget : IState
 
     public void OnExit()
     {
-        Debug.Log("exiting move to Target");
+       // Debug.Log("exiting move to Target");
         anim.SetBool("Walking", false);
         agent.enabled = false;
     }
