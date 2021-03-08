@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class BunSlot : MonoBehaviour
+public class IngredientSlot : MonoBehaviour
 {
     public Ingredient ingredient;
     public int amount;

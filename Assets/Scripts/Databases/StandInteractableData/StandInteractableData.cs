@@ -4,12 +4,16 @@ using UnityEngine;
 
 public enum InteractionComponent
 {
-    BUNS, HOTDOGS, DRINKS, CUSTOMER
+    BUNS, HOTDOGS,
+    MAYO, MUSTARD, KETCHUP,
+    DRINKS, 
+    CUSTOMER
 }
 
 [CreateAssetMenu(fileName = "StandInteractable", menuName = "TheHotdogStand/StandInteractable")]
-public class PlayerInteractable : ScriptableObject 
+public class StandInteractableData : ScriptableObject 
 {
-    public InteractionComponent interactionComponent;
+    public InteractionComponent _interactionComponent;
+    public bool interactableOpensWindow;
     
 }

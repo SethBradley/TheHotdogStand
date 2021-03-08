@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public GraphicRaycaster[]  _raycaster;
     EventSystem _eventSystem;
 
-    IPlayer_Interactable touchedInteractable;
+    StandInteractable touchedInteractable;
 
     //Inventories
     public Dictionary<Ingredient, int> _bunInventory;
@@ -51,12 +51,6 @@ public class PlayerController : MonoBehaviour
             else
                 TouchWhenWindowOpened();
         }
-
-
-        
-
-        
-        
     }
 
     private void CheckForInteraction()
@@ -66,24 +60,13 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 1000f, playerInteractableMask))
         {
-            touchedInteractable = hit.transform.GetComponent<IPlayer_Interactable>();
+            touchedInteractable = hit.transform.GetComponent<StandInteractable>();
 
             if (touchedInteractable != null)
             {
-                if (hit.transform.tag.Contains("Condiment") == false)
-                {
-                touchedInteractable.OnSelected();
-                windowOpened = true;
+                windowOpened = touchedInteractable.OnSelected();
                 return;
-                }
-                
-                //Give condiment a IPlayer_Interactable component
-                //else if (hit.transform.tag.Contains("Condiment"))
-                //Debug.Log("Enter condiment effect here"); 
             }
-
-
-
         }
 
     }

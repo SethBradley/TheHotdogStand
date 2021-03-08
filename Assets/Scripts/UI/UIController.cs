@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public GameObject interactionWindow;
+    public InteractionComponent interactionComponent;
         void Start()
     {
-        BunHolder.BunHolderSelected += ToggleBunWindow;
-        HotdogHolder.HotdogHolderSelected += ToggleHotdogWindow;
-        
-        
+        StandInteractable.InteractableToggle += ToggleInteractionWindow;
     }
 
-    void ToggleBunWindow(bool boolean)
+    void ToggleInteractionWindow(InteractionComponent _interactionComponent,  bool _boolean)
     {
-        SetActiveObjectAndChildren(transform.Find("BunHolderWindow"), boolean);
+        interactionComponent = _interactionComponent;
+        transform.Find("InteractionWindow").transform.gameObject.SetActive(_boolean);
     }
 
     void ToggleHotdogWindow(bool boolean)
