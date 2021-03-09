@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
 
     StandInteractable touchedInteractable;
 
-    //Inventories
-    public Dictionary<Ingredient, int> _bunInventory;
-    public Dictionary<Ingredient, int> _hotdogInventory;
+    //Inventory
+    public InventoryHolder _inventoryHolder;
     public bool windowOpened;
+
+    //Gameplay
+    public List<Ingredient> currentOrder;
 
 
     
@@ -30,16 +32,9 @@ public class PlayerController : MonoBehaviour
         if (instance != null && instance != this)
             Destroy(this.gameObject);
         else 
-            instance = this;
-
-
-    
-    
-    _bunInventory = new Dictionary<Ingredient, int>();
-    _hotdogInventory = new Dictionary<Ingredient, int>();
-    _bunInventory.Add(DatabaseMaster.instance.GetIngredient("bun_001"), 5);  
-    
+            instance = this;   
     }
+
     private void Update() 
     {
         //Convert to touch
@@ -91,8 +86,24 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void AddBuns(Ingredient type, int amount)
+    public void RemoveFromInventory(Ingredient ingredient)
     {
-
+        foreach (var entry in _inventoryHolder.ingredientInventories)
+        {
+            if (entry.type == ingredient.ingredientType)
+            {
+                for (int i = 0; i < entry.inventoryList.Count; i++)
+                {
+                    if (entry.inventoryList[i].ingredient == ingredient)
+                    {
+                        entry.inventoryList[i].amount--;
+                        if (entry.inventoryList[i].amount.Equals(0))
+                        {
+                            entry.inventoryList.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

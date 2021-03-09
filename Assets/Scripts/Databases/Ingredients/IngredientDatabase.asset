@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientDatabase:
   - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
+  - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}

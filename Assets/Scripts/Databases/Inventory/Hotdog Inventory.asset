@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 996c6d55b4e364447bb856005c13fca7, type: 3}
-  m_Name: Normal Hotdog Bun
+  m_Script: {fileID: 11500000, guid: 81e9b83e8646ecd45a2120dc9eb70b31, type: 3}
+  m_Name: Hotdog Inventory
   m_EditorClassIdentifier: 
-  ingredientID: bun_001
-  ingredientType: 0
-  ingredientName: Normal Hotdog Bun
-  description: A normal grocery store hotdog bun
-  sellValue: 2
-  buyValue: 1
+  type: 1
+  inventoryList: []

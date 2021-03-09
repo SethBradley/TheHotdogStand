@@ -17,12 +17,6 @@ public class UIController : MonoBehaviour
         transform.Find("InteractionWindow").transform.gameObject.SetActive(_boolean);
     }
 
-    void ToggleHotdogWindow(bool boolean)
-    {
-        SetActiveObjectAndChildren(transform.Find("HotdogHolderWindow"), boolean);
-
-    }
-
 
 
     void SetActiveObjectAndChildren(Transform parent, bool boolean)

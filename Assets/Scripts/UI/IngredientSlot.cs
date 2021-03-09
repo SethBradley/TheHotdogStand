@@ -11,9 +11,25 @@ public class IngredientSlot : MonoBehaviour
 
 
 
-    public void BunSlotClicked()
+
+    public void SlotClicked()
     {
-        Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
+        var currentOrder = PlayerController.instance.currentOrder;
+        
+
+        if (!currentOrder.Contains(ingredient))
+        {
+            currentOrder.Add(ingredient);
+            amount--;
+            PlayerController.instance.RemoveFromInventory(ingredient);
+            
+            Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
+            return;
+        }
+
+        //Error sound plays while making the ingredient in inventory flash red?
+        return;
+        
 
     }
 
@@ -22,14 +38,18 @@ public class IngredientSlot : MonoBehaviour
         if (ingredient == null)
         {
             ingredient = _ingredient;
-        }
-
-        if (ingredient == _ingredient)
-        {
             amount = _amount;
         }
 
         return;
+    }
+
+    private void OnDisable() 
+    {
+        gameObject.SetActive(false);
+        ingredient = null;
+        amount = 0;
+        image = null;
     }
 
 }

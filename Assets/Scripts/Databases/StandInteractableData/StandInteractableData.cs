@@ -7,7 +7,7 @@ public enum InteractionComponent
     BUNS, HOTDOGS,
     MAYO, MUSTARD, KETCHUP,
     DRINKS, 
-    CUSTOMER
+    CUSTOMER = 10
 }
 
 [CreateAssetMenu(fileName = "StandInteractable", menuName = "TheHotdogStand/StandInteractable")]

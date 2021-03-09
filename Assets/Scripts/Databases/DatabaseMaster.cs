@@ -18,7 +18,7 @@ public class DatabaseMaster : MonoBehaviour
 
     public Ingredient GetIngredient(string id)
     {
-        foreach (var entry in ingredientDatabase.ingredientDatabase)
+        foreach (var entry in ingredientDatabase.allIngredients)
         {
             if (entry.ingredientID == id)
             {

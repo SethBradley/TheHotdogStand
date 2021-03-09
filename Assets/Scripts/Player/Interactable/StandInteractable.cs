@@ -21,7 +21,7 @@ public class StandInteractable : MonoBehaviour
         if (standInteractabledata.interactableOpensWindow)
         {
             InteractableToggle(interactionComponent,  true);
-            Debug.Log("You selected " + interactionComponent + ". Opening window");
+            //Debug.Log("You selected " + interactionComponent + ". Opening window");
             return true;
         }
         
