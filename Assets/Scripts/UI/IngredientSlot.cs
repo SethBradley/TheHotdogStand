@@ -19,10 +19,8 @@ public class IngredientSlot : MonoBehaviour
 
         if (!currentOrder.Contains(ingredient))
         {
-            currentOrder.Add(ingredient);
+            PlayerController.instance.AddToOrder(ingredient);
             amount--;
-            PlayerController.instance.RemoveFromInventory(ingredient);
-            
             Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
             return;
         }

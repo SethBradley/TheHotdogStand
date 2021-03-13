@@ -39,10 +39,11 @@ public class Pedestrian : MonoBehaviour
 
         IState moveToTarget = new MoveToTarget(_target, this, _agent, _anim);
         IState sitAtBus = new SitAtBus(_target, this, _agent, _anim);
-
+        IState customer = new Customer(_target, this, _agent, _anim);
 
 
         newStateDict.Add(NPC_InteractableType.BUS_STOP_SEAT, sitAtBus);
+        newStateDict.Add(NPC_InteractableType.CUSTOMER, customer);
 
 
         stateMachine.newState = moveToTarget;

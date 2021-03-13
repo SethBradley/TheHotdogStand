@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     public Pedestrian occupant;
 
     public Vector3 position;
+    public Vector3 rotation;
 
 
 }

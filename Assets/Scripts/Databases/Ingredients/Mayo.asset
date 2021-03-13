@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 996c6d55b4e364447bb856005c13fca7, type: 3}
-  m_Name: Normal Hotdog
+  m_Name: Mayo
   m_EditorClassIdentifier: 
-  ingredientID: dog_001
-  ingredientType: 0
-  ingredientName: Normal Hotdog
-  description: Mmm.. Beefy
-  sellValue: 2
-  buyValue: 1
+  ingredientID: con_001
+  ingredientType: 2
+  ingredientName: Mayo
+  description: 
+  sellValue: 0
+  buyValue: 0

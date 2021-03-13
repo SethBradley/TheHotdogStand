@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 996c6d55b4e364447bb856005c13fca7, type: 3}
-  m_Name: Normal Hotdog
+  m_Script: {fileID: 11500000, guid: 7652d6cc8b1324b4cabcddac7a59c891, type: 3}
+  m_Name: Customer
   m_EditorClassIdentifier: 
-  ingredientID: dog_001
-  ingredientType: 0
-  ingredientName: Normal Hotdog
-  description: Mmm.. Beefy
-  sellValue: 2
-  buyValue: 1
+  interactionType: 2
+  orientation: {x: 0, y: 0, z: 0}

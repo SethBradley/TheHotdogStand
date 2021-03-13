@@ -25,6 +25,22 @@ public class StandInteractable : MonoBehaviour
             return true;
         }
         
+        if (interactionComponent == InteractionComponent.KETCHUP)
+        {
+            Debug.Log("You selected " + interactionComponent);
+            PlayerController.instance.AddToOrder(DatabaseMaster.instance.GetIngredient("con_002"));
+        }
+
+        if (interactionComponent == InteractionComponent.MUSTARD)
+        {
+            PlayerController.instance.AddToOrder(DatabaseMaster.instance.GetIngredient("con_003"));
+        }
+
+        if (interactionComponent == InteractionComponent.MAYO)
+        {
+            PlayerController.instance.AddToOrder(DatabaseMaster.instance.GetIngredient("con_001"));
+        }
+
         Debug.Log("You selected " + interactionComponent);
         return false;
     }

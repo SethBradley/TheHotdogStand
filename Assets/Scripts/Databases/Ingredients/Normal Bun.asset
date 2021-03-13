@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 996c6d55b4e364447bb856005c13fca7, type: 3}
-  m_Name: Normal Hotdog Bun
+  m_Name: Normal Bun
   m_EditorClassIdentifier: 
   ingredientID: bun_001
   ingredientType: 0
-  ingredientName: Hotdog Bun
+  ingredientName: Normal  Bun
   description: A normal supermarket bun
   sellValue: 2
   buyValue: 1

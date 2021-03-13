@@ -3,31 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SitAtBus : IState
+public class Customer : IState
 {
     private Interactable target;
     private Pedestrian pedestrian;
     private NavMeshAgent agent;
     private Animator anim;
+
     float x = 0f;
+
+
     Vector3 startRotation;
     Vector3 newRotation;
     Vector3 startPosition;
     Vector3 newPosition;
- 
 
-    public SitAtBus(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim)
+    
+    
+    public Customer(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim)
     {
         target = _target;
         pedestrian = _pedestrian;
         agent = _agent;
         anim = _anim;
     }
+
+
     public void OnEnter()
     {
-        //agent.isStopped = true;
-        Debug.Log("Beginning to wait at bus");
-        anim.SetBool("Sit", true);
+        anim.SetBool("Walking", false);
         
 
         startRotation = pedestrian.transform.rotation.eulerAngles;
@@ -36,36 +40,37 @@ public class SitAtBus : IState
         startPosition = pedestrian.transform.position;
         newPosition = pedestrian._target.position;
 
-       
         
-        
-
     }
 
     public void Tick()
     {
-        Debug.Log("Waiting at bus");
-        OrientToSeat();
-       
-        
+        OrientToStand();
     }
 
     public void OnExit()
     {
-        Debug.Log("Exiting wait at bus");
-        pedestrian._target.occupant = null;
+        
     }
 
-    void OrientToSeat()
-    {
-        
-        Vector3 pedestrianLerpRotation = Vector3.Lerp(startRotation, newRotation, x);
-        pedestrian.transform.rotation = Quaternion.Euler(pedestrianLerpRotation);
-        
-        Vector3 pedestrianLerpPosition = Vector3.Lerp(startPosition, newPosition, x);
-        pedestrian.transform.position = pedestrianLerpPosition;
 
-        x += Time.deltaTime * 1.2f;
+    void OrientToStand()
+    {      
+
+        float xLerp = Mathf.LerpAngle(startRotation.x, newRotation.x, x);
+        float yLerp = Mathf.LerpAngle(startRotation.y, newRotation.y, x);
+        float zLerp = Mathf.LerpAngle(startRotation.z, newRotation.z, x);
+        Vector3 Lerped = new Vector3(xLerp, yLerp, zLerp);
+
+        pedestrian.transform.rotation = Quaternion.Euler(Lerped);
+
+
+        //Vector3 pedestrianLerpPosition = Vector3.Lerp(startPosition, newPosition, x);
+        //pedestrian.transform.position = pedestrianLerpPosition;
+
+        //Debug.Log(x);
+
+        x += Time.deltaTime * 2f;
     }
 
 

@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f5fabed4637394a8b98b10353c60eb, type: 3}
   m_Name: IngredientDatabase
   m_EditorClassIdentifier: 
-  ingredientDatabase:
+  allIngredients:
   - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
+  - {fileID: 11400000, guid: 00c8bf51e8bcffc4aa35da80d4410607, type: 2}
+  - {fileID: 11400000, guid: fc36da08296ff6d4da1d568488740e54, type: 2}
+  - {fileID: 11400000, guid: 2fb3056e0d25e214bb7101ca4dcbc211, type: 2}
+  - {fileID: 11400000, guid: cbed602fa06b98c4384562886e11242a, type: 2}
+  bunDatabase:
   - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
+  hotdogDatabase:
+  - {fileID: 11400000, guid: 00c8bf51e8bcffc4aa35da80d4410607, type: 2}

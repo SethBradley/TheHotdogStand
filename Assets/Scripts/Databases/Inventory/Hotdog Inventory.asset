@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Hotdog Inventory
   m_EditorClassIdentifier: 
   type: 1
-  inventoryList: []
+  inventoryList:
+  - ingredient: {fileID: 11400000, guid: 00c8bf51e8bcffc4aa35da80d4410607, type: 2}
+    amount: 6

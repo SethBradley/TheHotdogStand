@@ -85,7 +85,25 @@ public class PlayerController : MonoBehaviour
         
     }
 
+//Order Methods
 
+    public void AddToOrder(Ingredient ingredient)
+    {
+        if (!currentOrder.Contains(ingredient))
+        {
+            currentOrder.Add(ingredient);
+            RemoveFromInventory(ingredient);
+            return;
+        }
+        
+        Debug.Log("Already in order");
+        
+    }
+
+
+
+
+//Inventory Methods
     public void RemoveFromInventory(Ingredient ingredient)
     {
         foreach (var entry in _inventoryHolder.ingredientInventories)
@@ -106,4 +124,26 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
+    // public void AddToInventory(Ingredient ingredient)
+    // {
+    //     foreach (var entry in _inventoryHolder.ingredientInventories)
+    //     {
+    //         if (entry.type == ingredient.ingredientType)
+    //         {
+    //             for (int i = 0; i < entry.inventoryList.Count; i++)
+    //             {
+    //                 if (entry.inventoryList[i].ingredient == ingredient)
+    //                 {
+    //                     entry.inventoryList[i].amount--;
+    //                     if (entry.inventoryList[i].amount.Equals(0))
+    //                     {
+    //                         entry.inventoryList.RemoveAt(i);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
