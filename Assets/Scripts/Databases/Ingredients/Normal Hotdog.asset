@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Normal Hotdog
   m_EditorClassIdentifier: 
   ingredientID: dog_001
-  ingredientType: 0
+  ingredientType: 1
   ingredientName: Normal Hotdog
+  sprite: {fileID: 21300000, guid: af2e64b1bc1bd0d40b65147759486dea, type: 3}
   description: Mmm.. Beefy
   sellValue: 2
   buyValue: 1
+  discovered: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum NPC_InteractableType
 {
-    EXIT, BUS_STOP_SEAT, CUSTOMER
+    EXIT, BUS_STOP_SEAT, CUSTOMER, MOVETOTARGET
 }
 
 [CreateAssetMenu(fileName = "NPCInteractable", menuName = "ScriptableObjects/NPCInteractable", order = 0)]

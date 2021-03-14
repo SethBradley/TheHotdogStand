@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     //Gameplay
     public List<Ingredient> currentOrder;
 
-
+    //Delegates
+    public static Action<Ingredient> AddToOrderSlotUI;
     
     private void Start()
     {
@@ -93,6 +94,8 @@ public class PlayerController : MonoBehaviour
         {
             currentOrder.Add(ingredient);
             RemoveFromInventory(ingredient);
+            Debug.Log("The ingredient youre going to add to UI now is " + ingredient.ingredientName);
+            AddToOrderSlotUI(ingredient);
             return;
         }
         

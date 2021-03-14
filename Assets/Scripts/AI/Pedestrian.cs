@@ -12,14 +12,17 @@ public class Pedestrian : MonoBehaviour
     public NavMeshAgent _agent;
     public List<GameObject> _checkedTargets;
     public Animator _anim;
+    public GameObject _patienceMeter;
 
-    [NonSerialized]
+    
     public bool changeState;
     bool searchForTarget = true;
 
     public Dictionary<NPC_InteractableType, IState> newStateDict;
     
     StateMachine stateMachine;
+
+    
 
 
 
@@ -34,16 +37,16 @@ public class Pedestrian : MonoBehaviour
         _anim = this.GetComponent<Animator>();
         _checkedTargets = new List<GameObject>();
 
-        
 
 
         IState moveToTarget = new MoveToTarget(_target, this, _agent, _anim);
         IState sitAtBus = new SitAtBus(_target, this, _agent, _anim);
-        IState customer = new Customer(_target, this, _agent, _anim);
+        IState customer = new Customer(_target, this, _agent, _anim, _patienceMeter);
 
 
         newStateDict.Add(NPC_InteractableType.BUS_STOP_SEAT, sitAtBus);
         newStateDict.Add(NPC_InteractableType.CUSTOMER, customer);
+        newStateDict.Add(NPC_InteractableType.EXIT, moveToTarget);
 
 
         stateMachine.newState = moveToTarget;
@@ -56,7 +59,10 @@ public class Pedestrian : MonoBehaviour
         if (searchForTarget)
             SearchForNewTarget();
 
+
         SetNewState();
+        
+
         
     }
 

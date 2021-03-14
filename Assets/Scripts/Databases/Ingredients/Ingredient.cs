@@ -14,11 +14,14 @@ public class Ingredient : ScriptableObject
     public ingredientType ingredientType;
     
     public string ingredientName;
+    public Sprite sprite;
     public string description;
 
     public float sellValue;
 
     public float buyValue;
+
+    public bool discovered;
     
     
 }

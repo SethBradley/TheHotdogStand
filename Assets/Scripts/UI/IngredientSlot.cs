@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,8 @@ public class IngredientSlot : MonoBehaviour
 {
     public Ingredient ingredient;
     public int amount;
-    public Sprite image;
+    public Sprite sprite;
+    
 
 
 
@@ -21,6 +23,8 @@ public class IngredientSlot : MonoBehaviour
         {
             PlayerController.instance.AddToOrder(ingredient);
             amount--;
+            
+
             Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
             return;
         }
@@ -37,6 +41,8 @@ public class IngredientSlot : MonoBehaviour
         {
             ingredient = _ingredient;
             amount = _amount;
+            sprite = _ingredient.sprite;
+            GetComponent<Image>().sprite = _ingredient.sprite;
         }
 
         return;
@@ -47,7 +53,7 @@ public class IngredientSlot : MonoBehaviour
         gameObject.SetActive(false);
         ingredient = null;
         amount = 0;
-        image = null;
+        sprite = null;
     }
 
 }

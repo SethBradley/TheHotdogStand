@@ -41,6 +41,10 @@ public class StandInteractable : MonoBehaviour
             PlayerController.instance.AddToOrder(DatabaseMaster.instance.GetIngredient("con_001"));
         }
 
+        if (interactionComponent == InteractionComponent.CUSTOMER)
+        {
+            Debug.Log("Customer selected");
+        }
         Debug.Log("You selected " + interactionComponent);
         return false;
     }

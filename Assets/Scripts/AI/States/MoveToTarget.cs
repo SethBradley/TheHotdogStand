@@ -39,7 +39,9 @@ public class MoveToTarget : IState
         {
             Debug.Log("Target changed, setting new destination");
             target = pedestrian._target.GetComponent<Interactable>();
+            Debug.Log(target);
             agent.SetDestination(target.transform.position);
+            return;
         }
         
 
@@ -47,7 +49,6 @@ public class MoveToTarget : IState
         {
             if (target.interaction.interactionType == 0)
             {
-                
                 Object.Destroy(pedestrian.gameObject);
                 return;
             }

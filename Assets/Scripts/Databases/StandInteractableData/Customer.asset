@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81e9b83e8646ecd45a2120dc9eb70b31, type: 3}
-  m_Name: Bun Inventory
+  m_Script: {fileID: 11500000, guid: 06aef2e5126864b4d855159d47a3eab7, type: 3}
+  m_Name: Customer
   m_EditorClassIdentifier: 
-  type: 0
-  inventoryList:
-  - ingredient: {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
-    amount: 895
+  _interactionComponent: 10
+  interactableOpensWindow: 0
