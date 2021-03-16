@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     //Delegates
     public static Action<Ingredient> AddToOrderSlotUI;
+    public static Action<float> AddToDailyEarning;
     
     private void Start()
     {
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
             Destroy(this.gameObject);
         else 
             instance = this;   
+
+        OrderUpWindow.OnAttemptToDeliver += DeliverOrder;
     }
 
     private void Update() 
@@ -99,11 +102,40 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        Debug.Log("Already in order");
-        
+        Debug.Log("Already in order"); 
     }
 
 
+    public void DeliverOrder()
+    {
+        RaycastHit hit; 
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 1000f, playerInteractableMask))
+        {
+            var customer = hit.transform;
+            float costOfOrder = 0;
+
+            if (customer.GetComponent<StandInteractable>().interactionComponent == InteractionComponent.CUSTOMER)
+            {
+                foreach (var item in currentOrder)
+                {
+                    if (!customer.GetComponent<Pedestrian>()._customerOrder.Contains(item))
+                    {
+                        Debug.Log("Incorrect order");
+                        return;
+                    }
+
+                    costOfOrder += item.sellValue;
+                    continue;
+                }
+
+                AddToDailyEarning(costOfOrder);
+                customer.GetComponent<Pedestrian>().CustomerLeave();
+                
+            }
+        }
+    }
 
 
 //Inventory Methods

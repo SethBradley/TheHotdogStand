@@ -20,19 +20,7 @@ public class UIController : MonoBehaviour
 
 
 
-    void SetActiveObjectAndChildren(Transform parent, bool boolean)
-    {
-                
-        foreach (Transform child in parent)
-        {
-            child.gameObject.SetActive(boolean);
-            if (child.childCount > 1)
-            {
-                SetActiveObjectAndChildren(child, boolean);
-            }
-        }
-        parent.gameObject.SetActive(boolean);
-    }
+
 
     void AddToOrderUI(Ingredient _ingredient)
     {

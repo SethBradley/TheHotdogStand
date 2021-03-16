@@ -17,6 +17,6 @@ MonoBehaviour:
   ingredientName: Ketchup
   sprite: {fileID: 21300000, guid: 5eb5547340aa2eb4d9330f8d077adb23, type: 3}
   description: 
-  sellValue: 0
+  sellValue: 0.25
   buyValue: 0
   discovered: 1

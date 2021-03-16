@@ -17,6 +17,6 @@ MonoBehaviour:
   ingredientName: Normal  Bun
   sprite: {fileID: 21300000, guid: d01d1c3f7b677204da32da93b7ccdcc3, type: 3}
   description: A normal supermarket bun
-  sellValue: 2
+  sellValue: 0.75
   buyValue: 1
   discovered: 1

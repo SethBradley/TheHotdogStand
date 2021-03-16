@@ -64,7 +64,8 @@ public class Customer : IState
             findOrderTimer -= Time.deltaTime;
             if (findOrderTimer <= 0)
             {
-                GenerateCustomerOrder();
+                Debug.Log ("Generating order");
+                pedestrian.GenerateCustomerOrder();
                 pedestrian.gameObject.layer = 9;
                 patienceMeter = GameObject.Instantiate(patienceMeter, parent: pedestrian.transform);
                 return;
@@ -76,10 +77,8 @@ public class Customer : IState
         
         if (patienceMeter == null)
         {
-            Debug.Log ("Customer ran out of patience and left");
-            pedestrian._target = pedestrian.GetRandomExit();
-            
-            pedestrian.changeState = true;
+            //Debug.Log ("Customer ran out of patience and left");
+           pedestrian.CustomerLeave();
             
         }
 
@@ -91,6 +90,7 @@ public class Customer : IState
         agent.enabled = true;
         pedestrian.gameObject.layer = 0;
     }
+
 
 
 
@@ -108,113 +108,6 @@ public class Customer : IState
         x += Time.deltaTime * 2f;        
     }
 
-    void GenerateCustomerOrder()
-    {
-        customerOrder = new List<Ingredient>();
-
-        float chanceForHotdog = SethUtils.MathTools.RandomNumberGeneration(0f,1f);
-        bool addedHotdog;
-
-        float chanceForCondiments = SethUtils.MathTools.RandomNumberGeneration(0f,1f);
-
-        
-
-        if (chanceForHotdog >= 0.25f)
-        {
-            customerOrder.Add(AddHotdogToOrder());
-            customerOrder.Add(AddBunToOrder());
-            addedHotdog = true;
-
-            if (chanceForCondiments >= 0.25f && addedHotdog)
-            {
-                customerOrder.Add(AddCondimentsToOrder(chanceForCondiments));
-            }        
-        }
-
-        foreach (var item in customerOrder)
-            Debug.Log(item);
-    }
-
-    Ingredient AddHotdogToOrder()
-    {
-        List<Ingredient> hotdogOptions = new List<Ingredient>();
-
-        foreach (Ingredient ingredient in DatabaseMaster.instance.ingredientDatabase.hotdogDatabase)
-        {
-            if (ingredient.discovered)
-            {
-                hotdogOptions.Add(ingredient);
-            }
-        }
-        return hotdogOptions[SethUtils.MathTools.RandomNumberGeneration(0, hotdogOptions.Count)];
-    }
-    Ingredient AddBunToOrder()
-    {
-        List<Ingredient> bunOptions = new List<Ingredient>();
-
-        foreach (Ingredient ingredient in DatabaseMaster.instance.ingredientDatabase.bunDatabase)
-        {
-            if (ingredient.discovered)
-            {
-                bunOptions.Add(ingredient);
-            }
-        }
-        return bunOptions[SethUtils.MathTools.RandomNumberGeneration(0, bunOptions.Count)];
-    }
-
-    //Condiments NEEDS TO BE REWORKED YUCK
-    Ingredient AddCondimentsToOrder(float chanceForCondiments)
-    {
-//Adding Mayo
-        if (chanceForCondiments >= 0.90)
-        {
-            return DatabaseMaster.instance.GetIngredient("con_001");
-        }
-        if (chanceForCondiments >= 0.80)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_002"));
-            return DatabaseMaster.instance.GetIngredient("con_001");
-            
-        }
-        if (chanceForCondiments >= 0.70)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_003"));
-            return DatabaseMaster.instance.GetIngredient("con_001");
-        }
-
-//Adding Ketchup
-        if (chanceForCondiments >= 0.60)
-        {
-            return DatabaseMaster.instance.GetIngredient("con_002");
-        }
-        if (chanceForCondiments >= 0.50)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_001"));
-            return DatabaseMaster.instance.GetIngredient("con_002");
-        }
-        if (chanceForCondiments >= 0.40)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_003"));
-            return DatabaseMaster.instance.GetIngredient("con_002");
-        }
-//Adding Mustard
-        if (chanceForCondiments >= 0.30)
-        {
-            return DatabaseMaster.instance.GetIngredient("con_003");
-        }
-        if (chanceForCondiments >= 0.20)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_001"));
-            return DatabaseMaster.instance.GetIngredient("con_003");
-        }
-        if (chanceForCondiments >= 0.10)
-        {
-            customerOrder.Add(DatabaseMaster.instance.GetIngredient("con_002"));
-            return DatabaseMaster.instance.GetIngredient("con_003");
-        }
-
-        return DatabaseMaster.instance.GetIngredient("con_003");
-    }
 
 
 

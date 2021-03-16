@@ -17,6 +17,6 @@ MonoBehaviour:
   ingredientName: Mustard
   sprite: {fileID: 21300000, guid: bd1964fb42e83fb439d1785568b8ada2, type: 3}
   description: 
-  sellValue: 0
+  sellValue: 0.25
   buyValue: 0
   discovered: 1

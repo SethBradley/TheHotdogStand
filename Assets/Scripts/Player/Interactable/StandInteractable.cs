@@ -54,4 +54,9 @@ public class StandInteractable : MonoBehaviour
         InteractableToggle(interactionComponent,  false);
     }
 
+    public void OnDeliverToCustomer()
+    {
+
+    }
+
 }

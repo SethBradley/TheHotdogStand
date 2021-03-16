@@ -32,4 +32,37 @@ public class PhysicsTools
         return Lerped;
     }
 }
+
+
+public class TransformTools
+{
+    public static void SetActiveObjectAndChildren(Transform parent, bool boolean)
+    {
+                
+        foreach (Transform child in parent)
+        {
+            child.gameObject.SetActive(boolean);
+            if (child.childCount > 1)
+            {
+                SetActiveObjectAndChildren(child, boolean);
+            }
+        }
+        parent.gameObject.SetActive(boolean);
+    }
+}
+
+/***********This is how I typically handle RayCasting
+        RaycastHit hit; 
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 1000f, playerInteractableMask))
+        {
+            touchedInteractable = hit.transform.GetComponent<StandInteractable>();
+
+            if (touchedInteractable != null)
+            {
+                windowOpened = touchedInteractable.OnSelected();
+                return;
+            }
+*/
 }
