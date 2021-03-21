@@ -6,16 +6,29 @@ public class MainMenuController : MonoBehaviour
 {
     public Camera mainCam;
     public bool showMenuSelection;
+    public static MainMenuController instance;
 
 
-    //Camera Movement
+    //Camera Movement and UI
+    [Header("Camera Movement & UI")]
+    public GameObject tapToContinueWindow;
     Vector3 startRotation;
     Vector3 startPosition;
     float CameraLerpProgress;
 
+    //Windows
+    [Header("Windows")]
+    public IMenuWindow activeWindow;
+    public GameObject goBackButton;
+
     
     private void Awake() 
     {
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+        else 
+            instance = this;   
+        
         showMenuSelection = false;
         
         startRotation = mainCam.transform.rotation.eulerAngles;
@@ -26,23 +39,29 @@ public class MainMenuController : MonoBehaviour
 
     private void Update() 
     {
-        RaycastHit hit; 
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
 
         if (Input.GetMouseButtonDown(0))
         {
+            RaycastHit hit; 
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out hit, 1000f))
             {
                 if (showMenuSelection == false)
                 {
-
+                    tapToContinueWindow.SetActive(false);
                     StartCoroutine(CameraMoving());
+
                     showMenuSelection = true;
                     return;
                 }
-            
-                var touchedInteractable = hit.transform.name;
             }
+        }
+
+        if (activeWindow != null)
+        {
+            activeWindow.onOpen();
         }
     }
 
@@ -53,8 +72,7 @@ public class MainMenuController : MonoBehaviour
 //Camera Control Methods
     private bool MoveCameraToMenuSelection()
     {
-        Debug.Log("MoveCameraToSelection;");
-        
+       
         var targetRotation = new Vector3(3.42f, -37.7f, 0f);
         var targetPosition = new Vector3(-12.626f, 0.894f, -9.922f); 
         
@@ -63,10 +81,9 @@ public class MainMenuController : MonoBehaviour
         mainCam.transform.position = SethUtils.PhysicsTools.ProperLerpRotation(startPosition, targetPosition, CameraLerpProgress);
 
         CameraLerpProgress += Time.deltaTime * 2f;
-
-        if (Time.deltaTime >= 2f)
+        
+        if (CameraLerpProgress >= 2f)
         {
-            Debug.Log("Camera arrived at destination");
             return true;
         }
 
@@ -75,8 +92,6 @@ public class MainMenuController : MonoBehaviour
 
     IEnumerator CameraMoving()
     {
-        Debug.Log("Begin Coroutine");
         yield return new WaitUntil(MoveCameraToMenuSelection);
-        Debug.Log("Coroutine Finished");
     }
 }
