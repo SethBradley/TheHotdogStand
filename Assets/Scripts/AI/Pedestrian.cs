@@ -22,7 +22,8 @@ public class Pedestrian : MonoBehaviour
     
 
     public bool changeState;
-    bool searchForTarget = true;
+    public bool searchForTarget = true;
+    public bool newCustomer;
 
     public Dictionary<NPC_InteractableType, IState> newStateDict;
     
@@ -92,12 +93,21 @@ public class Pedestrian : MonoBehaviour
         
     }
 
+    
+
     public Interactable GetRandomExit()
     {
         int random = UnityEngine.Random.Range(0, GameController.instance.exits.Count);
         Interactable newTarget = GameController.instance.exits[random];
         
         return newTarget;
+    }
+
+
+    //Spawning Methods
+    public void PedestrianRespawn()
+    {        
+        PedestrianSpawnController.instance.CycleNPC(this);
     }
 
     void SearchForNewTarget()
@@ -114,6 +124,7 @@ public class Pedestrian : MonoBehaviour
                     _target = obj.GetComponent<Interactable>();
                     _target.occupant = this;
                     searchForTarget = false;
+                    _checkedTargets.Add(obj.gameObject);
                     return;
                 }
                 else if (random < 1 && !_checkedTargets.Contains(obj.gameObject))
@@ -254,9 +265,16 @@ public class Pedestrian : MonoBehaviour
 
     public void CustomerLeave()
     {
-        _target = GetRandomExit();
-        SethUtils.TransformTools.SetActiveObjectAndChildren(transform.Find("OrderBubble 1(Clone)"), false);
         changeState = true;
+        var patienceMeter = transform.Find("PatienceCanvas(Clone)");
+        var orderBubble = transform.Find("OrderBubble 1(Clone)");
+        _target = GetRandomExit();
+        SethUtils.TransformTools.SetActiveObjectAndChildren(orderBubble, false);
+        
+        if (patienceMeter != null)
+            SethUtils.TransformTools.SetActiveObjectAndChildren(patienceMeter, false);
+        
+        
     }
 
 }

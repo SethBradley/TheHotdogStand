@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     
     public List<Interactable> exits;
+    public List<GameObject> HotdogStandSpots;
     
 
     void Awake()

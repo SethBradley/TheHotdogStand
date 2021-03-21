@@ -36,10 +36,10 @@ public class PhysicsTools
 
 public class TransformTools
 {
-    public static void SetActiveObjectAndChildren(Transform parent, bool boolean)
+    public static void SetActiveObjectAndChildren(Transform thisParent, bool boolean)
     {
                 
-        foreach (Transform child in parent)
+        foreach (Transform child in thisParent)
         {
             child.gameObject.SetActive(boolean);
             if (child.childCount > 1)
@@ -47,7 +47,7 @@ public class TransformTools
                 SetActiveObjectAndChildren(child, boolean);
             }
         }
-        parent.gameObject.SetActive(boolean);
+        thisParent.gameObject.SetActive(boolean);
     }
 }
 

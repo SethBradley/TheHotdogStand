@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     //Delegates
     public static Action<Ingredient> AddToOrderSlotUI;
     public static Action<float> AddToDailyEarning;
+    public static Action ClearOrderSlots;
     
     private void Start()
     {
@@ -105,6 +106,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Already in order"); 
     }
 
+    public void ClearOrder()
+    {
+        currentOrder.Clear();
+        ClearOrderSlots();
+    }
+
 
     public void DeliverOrder()
     {
@@ -114,15 +121,20 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1000f, playerInteractableMask))
         {
             var customer = hit.transform;
+            var customerOrder = customer.GetComponent<Pedestrian>()._customerOrder;
             float costOfOrder = 0;
 
             if (customer.GetComponent<StandInteractable>().interactionComponent == InteractionComponent.CUSTOMER)
             {
                 foreach (var item in currentOrder)
                 {
-                    if (!customer.GetComponent<Pedestrian>()._customerOrder.Contains(item))
+                    if (!customerOrder.Contains(item))
                     {
                         Debug.Log("Incorrect order");
+                        return;
+                    }
+                    else if (customerOrder.Count != currentOrder.Count)
+                    {
                         return;
                     }
 
@@ -131,6 +143,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 AddToDailyEarning(costOfOrder);
+                ClearOrder();
                 customer.GetComponent<Pedestrian>().CustomerLeave();
                 
             }

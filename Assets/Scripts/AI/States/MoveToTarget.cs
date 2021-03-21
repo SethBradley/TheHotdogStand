@@ -34,7 +34,10 @@ public class MoveToTarget : IState
 //        Debug.Log("Moving to Target");
 
         
-
+        if(!anim.parameters[0].defaultBool)
+        {
+            anim.SetBool("Walking", true);
+        }
         if (pedestrian._target != target)
         {
             Debug.Log("Target changed, setting new destination");
@@ -49,7 +52,7 @@ public class MoveToTarget : IState
         {
             if (target.interaction.interactionType == 0)
             {
-                Object.Destroy(pedestrian.gameObject);
+                pedestrian.PedestrianRespawn();
                 return;
             }
             

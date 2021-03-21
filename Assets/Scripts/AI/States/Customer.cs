@@ -39,6 +39,13 @@ public class Customer : IState
     {
         anim.SetBool("Walking", false);
         
+        for (int i = 0; i < GameController.instance.HotdogStandSpots.Count; i++)
+        {
+            if(!pedestrian._checkedTargets.Contains(GameController.instance.HotdogStandSpots[i]))
+                pedestrian._checkedTargets.Add(GameController.instance.HotdogStandSpots[i]);
+            i++;
+        }
+
 
         startRotation = pedestrian.transform.rotation.eulerAngles;
         newRotation = pedestrian._target.rotation;
@@ -48,10 +55,6 @@ public class Customer : IState
 
         findOrderTimer = SethUtils.MathTools.RandomNumberGeneration(2f, 5f);
         //Debug.Log(findOrderTimer);
-        
-
-
-        
     }
 
     public void Tick()
@@ -87,8 +90,12 @@ public class Customer : IState
     public void OnExit()
     {
         Debug.Log("Exiting Customer state");
+
+        target.occupant = null;
+        pedestrian.searchForTarget = true;
         agent.enabled = true;
         pedestrian.gameObject.layer = 0;
+        
     }
 
 
@@ -98,6 +105,7 @@ public class Customer : IState
     void OrientToStand()
     {   
         pedestrian.transform.rotation = Quaternion.Euler(SethUtils.PhysicsTools.ProperLerpRotation(startRotation, newRotation, x));
+        pedestrian.transform.position = SethUtils.PhysicsTools.ProperLerpRotation(startPosition, newPosition, x);
 
         if (x >= 2)
         {   

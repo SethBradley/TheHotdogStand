@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
+    
     public GameObject orderEntrySlot;
     public InteractionComponent interactionComponent;
         void Start()
     {
         StandInteractable.InteractableToggle += ToggleInteractionWindow;
         PlayerController.AddToOrderSlotUI += AddToOrderUI;
+        PlayerController.ClearOrderSlots += CloseOrderWindow;
     }
 
     void ToggleInteractionWindow(InteractionComponent _interactionComponent,  bool _boolean)
@@ -34,16 +36,24 @@ public class UIController : MonoBehaviour
             
         }
         //var orderEntrySlot = child.GetComponent<OrderEntrySlot>();
-        Debug.Log(PlayerController.instance.currentOrder.Count - 1 + "AAAAAAAAA");
         var nextOrderSlot = currentOrderWindow.transform.GetChild(PlayerController.instance.currentOrder.Count - 1);
         
         nextOrderSlot.gameObject.SetActive(true);
         nextOrderSlot.GetComponent<OrderEntrySlot>().ingredientInSlot = _ingredient;
         nextOrderSlot.GetComponent<OrderEntrySlot>().sprite = _ingredient.sprite;
         nextOrderSlot.GetComponent<Image>().sprite = _ingredient.sprite;
+    }
 
+    public void CloseOrderWindow()
+    {
+        var currentOrderWindow = transform.Find("CurrentOrderWindow");
+        var orderUpWindow = transform.Find("OrderupWindow");
 
-
+        if (currentOrderWindow.gameObject.activeSelf)
+        {
+            currentOrderWindow.gameObject.SetActive(false);
+            orderUpWindow.gameObject.SetActive(false);
+        }
     }
     
 

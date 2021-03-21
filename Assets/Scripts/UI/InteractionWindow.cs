@@ -30,9 +30,21 @@ public class InteractionWindow : MonoBehaviour
         {
             transform.GetChild(x).gameObject.SetActive(true);
             transform.GetChild(x).GetComponent<IngredientSlot>().UpdateSlot(entry.ingredient, entry.amount);
+            transform.GetChild(x).GetComponent<IngredientSlot>().OnCloseInteractionWindow += CloseInteractionWindow;
             x++;
         }    
         x = 0;
+    }
+
+    public void CloseInteractionWindow()
+    {
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<IngredientSlot>().OnCloseInteractionWindow -= CloseInteractionWindow;
+        }
+
+        gameObject.SetActive(false);
+
     }
 
     private void OnDisable() 

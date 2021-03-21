@@ -8,6 +8,13 @@ public class IngredientSlot : MonoBehaviour
     public Ingredient ingredient;
     public int amount;
     public Sprite sprite;
+    public Action OnCloseInteractionWindow;
+
+
+    private void Awake() 
+    {
+         
+    }
     
 
 
@@ -22,10 +29,10 @@ public class IngredientSlot : MonoBehaviour
         if (!currentOrder.Contains(ingredient))
         {
             PlayerController.instance.AddToOrder(ingredient);
+            PlayerController.instance.windowOpened = false;
             amount--;
-            
-
-            Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
+            OnCloseInteractionWindow();
+            //Debug.Log("This slot contains: " + ingredient.ingredientName + " and you have this amount left: " + amount);
             return;
         }
 
@@ -47,6 +54,9 @@ public class IngredientSlot : MonoBehaviour
 
         return;
     }
+
+
+    
 
     private void OnDisable() 
     {
