@@ -9,7 +9,6 @@ public class NewGameMenu : MonoBehaviour, IMenuWindow
 
     public void onOpen()
     {
-        MainMenuController.instance.activeWindow = null;
         mainMenuUI = FindObjectOfType<MainMenuUI>();
 
         MainMenuController.instance.goBackButton.gameObject.SetActive(true);

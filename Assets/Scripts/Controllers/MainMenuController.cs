@@ -20,6 +20,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Windows")]
     public IMenuWindow activeWindow;
     public GameObject goBackButton;
+    public bool windowIsActive;
 
     
     private void Awake() 
@@ -30,6 +31,7 @@ public class MainMenuController : MonoBehaviour
             instance = this;   
         
         showMenuSelection = false;
+        windowIsActive = false;
         
         startRotation = mainCam.transform.rotation.eulerAngles;
         startPosition = mainCam.transform.position;
@@ -59,8 +61,9 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
-        if (activeWindow != null)
+        if (activeWindow != null && windowIsActive == false)
         {
+            windowIsActive = true;
             activeWindow.onOpen();
         }
     }

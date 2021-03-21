@@ -18,6 +18,14 @@ public class MenuSelections : MonoBehaviour
        MainMenuController.instance.activeWindow = newGameMenu;
     }
 
+    public void CloseActiveWindow()
+    {
+        
+        MainMenuController.instance.windowIsActive = false;
+        MainMenuController.instance.activeWindow.onClose();
+        MainMenuController.instance.activeWindow = null;
+    }
+
 }
 
 
