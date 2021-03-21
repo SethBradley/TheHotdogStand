@@ -5,7 +5,6 @@ using SethUtils;
 public class MainMenuController : MonoBehaviour
 {
     public Camera mainCam;
-    public LayerMask playerInteractableMask;
     public bool showMenuSelection;
 
 
@@ -32,7 +31,7 @@ public class MainMenuController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(ray, out hit, 1000f, playerInteractableMask))
+            if (Physics.Raycast(ray, out hit, 1000f))
             {
                 if (showMenuSelection == false)
                 {
