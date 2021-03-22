@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class MenuSelections : MonoBehaviour
 {
     NewGameMenu newGameMenu = new NewGameMenu();
+    OptionsMenu optionsMenu = new OptionsMenu();
 
     private void Awake() 
     {
@@ -14,8 +15,12 @@ public class MenuSelections : MonoBehaviour
 
     public void NewGameClick()
     {
-        Debug.Log("Start New Game?");
        MainMenuController.instance.activeWindow = newGameMenu;
+    }
+
+    public void OptionsClick()
+    {
+        MainMenuController.instance.activeWindow = optionsMenu;
     }
 
     public void CloseActiveWindow()
