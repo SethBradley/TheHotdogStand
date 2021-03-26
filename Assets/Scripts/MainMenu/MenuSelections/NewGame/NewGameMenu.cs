@@ -14,10 +14,7 @@ public class NewGameMenu : MonoBehaviour, IMenuWindow
         MainMenuController.instance.goBackButton.gameObject.SetActive(true);
         mainMenuUI.transform.Find("NewGameWindow").gameObject.SetActive(true);
         
-        Debug.Log("Opened New Game Window");
-        
-
-        
+        Debug.Log("Opened New Game Window"); 
     }
     public void onClose()
     {
