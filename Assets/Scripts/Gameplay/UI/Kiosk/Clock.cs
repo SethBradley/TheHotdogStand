@@ -17,7 +17,7 @@ public class Clock : MonoBehaviour
     {
         progressedTime += Time.deltaTime;
         // Debug.Log(progressedTime);
-        if (progressedTime >= 2f)
+        if (progressedTime >= 1f)
         {
             progressedTime = 0;
 
@@ -36,7 +36,7 @@ public class Clock : MonoBehaviour
 
         if (int.Parse(clockText.text.Substring(0,1)) == 5)
         {
-            Debug.Log("Day ends");
+            GameController.instance.EndDay();
         }
 
            

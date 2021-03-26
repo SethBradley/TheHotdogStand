@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
+    public GameObject sceneTransitionWindow;
 
 
     
@@ -16,8 +17,12 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
 
-
+    public void EndDay()
+    {
+        PlayerController.instance.gameObject.SetActive(false);
+        sceneTransitionWindow.SetActive(true);
 
     }
 }
