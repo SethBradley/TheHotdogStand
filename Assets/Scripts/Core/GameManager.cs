@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int selectedFile;
+    public static GameManager instance;
+    public int selectedSaveSlot;
 
+    public PlayerProfile playerProfile; 
+  
+
+    private void Start()
+    {
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+        else 
+            instance = this;
+
+
+        //InitializeGameData(); to check if save exists and if so set dataSlots   
+    }
 }

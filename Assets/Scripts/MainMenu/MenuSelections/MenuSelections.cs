@@ -44,6 +44,12 @@ public class MenuSelections : MonoBehaviour
         MainMenuController.instance.activeWindow = null;
     }
 
+    public void CloseActiveSubWindow()
+    {
+        MainMenuController.instance.MainMenuUI.transform.Find("NewGameOverwriteWindow").gameObject.SetActive(false);
+
+    }
+
 }
 
 
