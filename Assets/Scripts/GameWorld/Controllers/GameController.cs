@@ -21,9 +21,14 @@ public class GameController : MonoBehaviour
 
     public void EndDay()
     {
-        //PlayerController.instance.gameObject.SetActive(false);
+        PlayerController.instance.gameObject.SetActive(false);
         sceneTransitionWindow.SetActive(true);
+    }
 
+
+    public void SavePlayerProfile()
+    {
+        
     }
 }
 

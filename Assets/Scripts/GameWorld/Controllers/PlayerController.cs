@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    //Player Profile
+    public float dailyEarnings;
     public static PlayerController instance;
     public Camera mainCam;
     public LayerMask playerInteractableMask;

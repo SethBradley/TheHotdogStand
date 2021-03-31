@@ -31,5 +31,6 @@ public class NewGameHandler : MonoBehaviour
         SaveData newSaveData = new SaveData();
         SerializationManager.Save($"SaveDataSlot_{selectedSaveSlot}", newSaveData);
         GameManager.instance.selectedSaveSlot = selectedSaveSlot;
+        GameManager.instance.selectedSaveData = newSaveData;
     }
 }

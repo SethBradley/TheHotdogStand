@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int selectedSaveSlot;
-
+    public SaveData selectedSaveData;
     public PlayerProfile playerProfile; 
   
 
