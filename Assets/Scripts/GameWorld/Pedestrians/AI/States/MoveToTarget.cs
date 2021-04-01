@@ -40,9 +40,9 @@ public class MoveToTarget : IState
         }
         if (pedestrian._target != target)
         {
-            Debug.Log("Target changed, setting new destination");
+            //Debug.Log("Target changed, setting new destination");
             target = pedestrian._target.GetComponent<Interactable>();
-            Debug.Log(target);
+            //Debug.Log(target);
             agent.SetDestination(target.transform.position);
             return;
         }
@@ -52,7 +52,7 @@ public class MoveToTarget : IState
         {
             if (target.interaction.interactionType == 0)
             {
-                pedestrian.PedestrianRespawn();
+                PedestrianSpawnController.instance.CycleNPC(pedestrian);
                 return;
             }
             

@@ -23,14 +23,13 @@ public class GameController : MonoBehaviour
     {
         PlayerController.instance.gameObject.SetActive(false);
         sceneTransitionWindow.SetActive(true);
-        SavePlayerProfile();
+        SavePlayerData();
     }
 
 
-    public void SavePlayerProfile()
+    public void SavePlayerData()
     {
-        GameManager.instance.playerProfile.money += PlayerController.instance.dailyEarnings;
-        Debug.Log(GameManager.instance.playerProfile.money);
+        SaveData.current.totalMoney += PlayerController.instance.dailyEarnings;
     }
 }
 

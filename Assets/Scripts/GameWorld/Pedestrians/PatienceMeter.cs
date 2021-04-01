@@ -15,11 +15,6 @@ public class PatienceMeter : MonoBehaviour
         _slider.value -= Time.deltaTime;
 
         fill.color = _gradient.Evaluate(_slider.normalizedValue);
-
-        if (this._slider.value <= 0)
-        {
-            GameObject.Destroy(gameObject);
-        }    
     }
 
 

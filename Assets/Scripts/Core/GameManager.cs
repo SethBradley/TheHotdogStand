@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int selectedSaveSlot;
     public SaveData selectedSaveData;
-    public PlayerProfile playerProfile; 
-
-
     //Loading Screen
     public GameObject loadingScreen;
   
@@ -34,11 +31,11 @@ public class GameManager : MonoBehaviour
         SceneManager.UnloadSceneAsync((int)SceneIndexes.MAIN_MENU);
         SceneManager.LoadSceneAsync((int)SceneIndexes.GAMEWORLD, LoadSceneMode.Additive);
 
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetLoadGameProgress());
         
     }
 
-    public IEnumerator GetSceneLoadProgress()
+    public IEnumerator GetLoadGameProgress()
     {
         for (int i = 0; i < scenesLoading.Count; i++)
         {
@@ -47,6 +44,9 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
+        
+        //yield return new WaitForSeconds(4);
+        
 
         loadingScreen.gameObject.SetActive(false);
     }

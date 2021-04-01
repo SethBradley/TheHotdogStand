@@ -23,7 +23,6 @@ public class Pedestrian : MonoBehaviour
 
     public bool changeState;
     public bool searchForTarget = true;
-    public bool newCustomer;
 
     public Dictionary<NPC_InteractableType, IState> newStateDict;
     
@@ -48,7 +47,7 @@ public class Pedestrian : MonoBehaviour
 
         IState moveToTarget = new MoveToTarget(_target, this, _agent, _anim);
         IState sitAtBus = new SitAtBus(_target, this, _agent, _anim);
-        IState customer = new Customer(_target, this, _agent, _anim, _patienceMeter);
+        IState customer = new Customer(_target, this, _agent, _anim);
 
 
         newStateDict.Add(NPC_InteractableType.BUS_STOP_SEAT, sitAtBus);
@@ -119,7 +118,7 @@ public class Pedestrian : MonoBehaviour
             if (obj.tag == "Target")
             {
                 int random = UnityEngine.Random.Range(0,10);
-                if (random >= 1 && !_checkedTargets.Contains(obj.gameObject) && obj.GetComponent<Interactable>().occupant == null)
+                if (random >= 1 && !_checkedTargets.Contains(obj.gameObject) && _customerOrder.Count <= 0 && obj.GetComponent<Interactable>().occupant == null)
                 {
                     _target = obj.GetComponent<Interactable>();
                     _target.occupant = this;
@@ -152,7 +151,10 @@ public class Pedestrian : MonoBehaviour
 
         public void GenerateCustomerOrder()
     {
+        gameObject.layer = 9;
+
         _customerOrder = new List<Ingredient>();
+        GameObject newPatienceMeter = Instantiate(_patienceMeter, parent:this.transform);
 
         float chanceForHotdog = SethUtils.MathTools.RandomNumberGeneration(0f,1f);
         bool addedHotdog;
@@ -177,9 +179,14 @@ public class Pedestrian : MonoBehaviour
         foreach (var item in _customerOrder)
             Debug.Log(item);
 
-        
+        StartCoroutine(CustomerBeginWait());
     }
     
+    IEnumerator CustomerBeginWait()
+    {
+        yield return new WaitForSeconds(10);
+        CustomerLeave();
+    }
     
 
     Ingredient AddHotdogToOrder()
@@ -269,11 +276,8 @@ public class Pedestrian : MonoBehaviour
         var patienceMeter = transform.Find("PatienceCanvas(Clone)");
         var orderBubble = transform.Find("OrderBubble 1(Clone)");
         _target = GetRandomExit();
-        SethUtils.TransformTools.SetActiveObjectAndChildren(orderBubble, false);
-        
-        if (patienceMeter != null)
-            SethUtils.TransformTools.SetActiveObjectAndChildren(patienceMeter, false);
-        
+        GameObject.Destroy(patienceMeter.gameObject);
+        GameObject.Destroy(orderBubble.gameObject);
         
     }
 

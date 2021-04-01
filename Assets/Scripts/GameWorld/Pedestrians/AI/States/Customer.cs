@@ -25,13 +25,13 @@ public class Customer : IState
 
     
     
-    public Customer(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim, GameObject _patienceMeter)
+    public Customer(Interactable _target, Pedestrian _pedestrian, NavMeshAgent _agent, Animator _anim)
     {
         target = _target;
         pedestrian = _pedestrian;
         agent = _agent;
         anim = _anim;
-        patienceMeter = _patienceMeter.GetComponent<PatienceMeter>();
+        
     }
 
 
@@ -39,20 +39,13 @@ public class Customer : IState
     {
         anim.SetBool("Walking", false);
         
-        for (int i = 0; i < GameController.instance.HotdogStandSpots.Count; i++)
-        {
-            if(!pedestrian._checkedTargets.Contains(GameController.instance.HotdogStandSpots[i]))
-                pedestrian._checkedTargets.Add(GameController.instance.HotdogStandSpots[i]);
-            i++;
-        }
-
-
         startRotation = pedestrian.transform.rotation.eulerAngles;
         newRotation = pedestrian._target.rotation;
 
         startPosition = pedestrian.transform.position;
         newPosition = pedestrian._target.position;
 
+        patienceMeter = pedestrian._patienceMeter.GetComponent<PatienceMeter>();
         findOrderTimer = SethUtils.MathTools.RandomNumberGeneration(2f, 5f);
         //Debug.Log(findOrderTimer);
     }
@@ -69,22 +62,11 @@ public class Customer : IState
             {
                 Debug.Log ("Generating order");
                 pedestrian.GenerateCustomerOrder();
-                pedestrian.gameObject.layer = 9;
-                patienceMeter = GameObject.Instantiate(patienceMeter, parent: pedestrian.transform);
+                
                 return;
             }
             return;
-        }
-
-        //Debug.Log("Put out order");        
-        
-        if (patienceMeter == null)
-        {
-            //Debug.Log ("Customer ran out of patience and left");
-           pedestrian.CustomerLeave();
-            
-        }
-
+        }        
     }
 
     public void OnExit()
@@ -95,6 +77,7 @@ public class Customer : IState
         pedestrian.searchForTarget = true;
         agent.enabled = true;
         pedestrian.gameObject.layer = 0;
+        playAnimation = true;
         
     }
 

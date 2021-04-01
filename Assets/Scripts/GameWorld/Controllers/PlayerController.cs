@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    //Player Profile
+    //Save Data
     public float dailyEarnings;
+    //
     public static PlayerController instance;
     public Camera mainCam;
     public LayerMask playerInteractableMask;
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
             instance = this;   
 
         OrderUpWindow.OnAttemptToDeliver += DeliverOrder;
+
+
     }
 
     private void Update() 

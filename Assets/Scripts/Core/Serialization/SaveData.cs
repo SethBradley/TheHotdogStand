@@ -20,8 +20,9 @@ public class SaveData
         
     }
 
-    public PlayerProfile profile;
-
+    //public PlayerProfile profile;
+    public int saveSlot;
+    public float totalMoney;
 
     //Public ScriptableObj Inventory?
     //Public ScriptableObj Upgrades?
