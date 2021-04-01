@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 AddToDailyEarning(costOfOrder);
+                dailyEarnings += costOfOrder;
                 ClearOrder();
                 customer.GetComponent<Pedestrian>().CustomerLeave();
                 

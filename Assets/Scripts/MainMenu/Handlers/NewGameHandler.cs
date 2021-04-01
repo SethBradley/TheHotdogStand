@@ -29,6 +29,9 @@ public class NewGameHandler : MonoBehaviour
     {
         Debug.Log("Creating new Save");
         SaveData newSaveData = new SaveData();
+        newSaveData.saveSlotNumber = selectedSaveSlot;
+        
+
         SerializationManager.Save($"SaveDataSlot_{selectedSaveSlot}", newSaveData);
         GameManager.instance.selectedSaveSlot = selectedSaveSlot;
         GameManager.instance.selectedSaveData = newSaveData;

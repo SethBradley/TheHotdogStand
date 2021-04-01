@@ -7,10 +7,12 @@ public class Clock : MonoBehaviour
 {
     float progressedTime;
     TMP_Text clockText;
+    bool endOfDay;
 
     private void Start() 
     {
         clockText = transform.GetChild(0).GetComponent<TMP_Text>();
+        endOfDay = false;
     }
 
     private void Update() 
@@ -34,8 +36,9 @@ public class Clock : MonoBehaviour
             return;
         }
 
-        if (int.Parse(clockText.text.Substring(0,1)) == 5)
+        if (int.Parse(clockText.text.Substring(0,1)) == 5 && !endOfDay)
         {
+            endOfDay = true;
             GameController.instance.EndDay();
         }
 

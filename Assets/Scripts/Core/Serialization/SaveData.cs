@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
-    public string saveName;
+    public int saveSlotNumber;
     private static SaveData _current;
     public static SaveData current
     {

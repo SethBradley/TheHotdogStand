@@ -18,17 +18,21 @@ public class LoadGameHandler : MonoBehaviour
             LoadGameData();
             return;
         }
+        
         Debug.Log("No Game Data found, display load denied window");
     }
 
 
     void LoadGameData()
     {
-        string path = Application.persistentDataPath + "/saves/" + selectedSaveSlot + ".save";
-
-        GameManager.instance.selectedSaveSlot = selectedSaveSlot;
+        
+        string path = Application.persistentDataPath + "/saves/SaveDataSlot_" + selectedSaveSlot + ".save";
+        
         GameManager.instance.selectedSaveData = SerializationManager.Load(path) as SaveData;
-        Debug.Log(GameManager.instance.selectedSaveData.profile.money);
+        GameManager.instance.selectedSaveSlot = GameManager.instance.selectedSaveData.saveSlotNumber;
+
+        GameManager.instance.LoadGame();
+
     }
 
 }
