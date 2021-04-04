@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     StandInteractable touchedInteractable;
 
     //Inventory
-    public InventoryHolder _inventoryHolder;
+    
     public bool windowOpened;
 
     //Gameplay
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 //Inventory Methods
     public void RemoveFromInventory(Ingredient ingredient)
     {
-        foreach (var entry in _inventoryHolder.ingredientInventories)
+        foreach (var entry in GameController.instance._inventoryHolder.ingredientInventories)
         {
             if (entry.type == ingredient.ingredientType)
             {

@@ -11,7 +11,7 @@ public class PedestrianOrder : MonoBehaviour
     {
         List<Ingredient> availableIngredients = new List<Ingredient>();
 
-        foreach (var ingredientInventory in PlayerController.instance._inventoryHolder.ingredientInventories)
+        foreach (var ingredientInventory in GameController.instance._inventoryHolder.ingredientInventories)
         {
             foreach (var inventoryList in ingredientInventory.inventoryList)
             {

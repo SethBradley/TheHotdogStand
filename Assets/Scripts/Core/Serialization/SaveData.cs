@@ -17,12 +17,17 @@ public class SaveData
             }
             return _current;
         }
-        
+        set
+        {
+            _current = value;
+        }
     }
 
     //public PlayerProfile profile;
     public int saveSlot;
     public float totalMoney;
+    public int currentDay;
+    static public Dictionary<Object, int> playerInventory;
 
     //Public ScriptableObj Inventory?
     //Public ScriptableObj Upgrades?

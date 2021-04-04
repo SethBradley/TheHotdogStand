@@ -17,7 +17,7 @@ public class InteractionWindow : MonoBehaviour
     
     private void InitializeInteractionWindow(InteractionComponent _interactionComponent) 
     {
-        var selectedInventory = PlayerController.instance._inventoryHolder.GetIngredientInventory(_interactionComponent);
+        var selectedInventory = GameController.instance._inventoryHolder.GetIngredientInventory(_interactionComponent);
         int x = 0;
 
         if (selectedInventory.inventoryList.Count == 0)
