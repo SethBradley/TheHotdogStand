@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
         
     }
 
+    [ContextMenu("End Day")]
     public void EndDay()
     {
         currentDay++;
@@ -54,7 +55,7 @@ public class GameController : MonoBehaviour
 
         SaveData.current.totalMoney = totalMoney;
         SaveData.current.currentDay = currentDay;
-        SaveData.current.playerInventory = CreateSaveDictionary(playerInventory);
+        //ERRORSaveData.current.playerInventory = CreateSaveDictionary(playerInventory);
         GameManager.instance.SaveGameData();
     }
 
@@ -70,30 +71,33 @@ public class GameController : MonoBehaviour
             }
             
         }
-
-        foreach (var entry in NewDayInventoryCount)
-        {
-            Debug.Log("Ingredient: " + entry.Key);
-            Debug.Log("Amount: " + entry.Value);
-
-            
-        }
-
+        
         return NewDayInventoryCount;
 
         
     }
 
-    private Dictionary<Object,int> CreateSaveDictionary(Dictionary<Ingredient,int> _inventory)
+    private void CreateSaveDictionary(Dictionary<Ingredient,int> _inventory)
     {
-        Dictionary<Object,int> inventoryToSave = new Dictionary<Object, int>();
+        
+        Dictionary<Ingredient,int> inventoryToSave = new Dictionary<Ingredient, int>();
 
         foreach (var entry in _inventory)
         {
-            inventoryToSave.Add(entry.Key, entry.Value);            
+            
+            //ERRORinventoryToSave.Add(entry.Key as Object, entry.Value);     
         }
 
-        return inventoryToSave;
+
+        foreach (var entry in inventoryToSave)
+        {
+            Debug.Log(entry);     
+        }
+
+
+        Debug.Log(inventoryToSave);
+
+        //ERROR return inventoryToSave;
 
 
         

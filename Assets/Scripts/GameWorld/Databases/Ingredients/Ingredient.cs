@@ -8,6 +8,7 @@ public enum ingredientType
 }
 
 [CreateAssetMenu(fileName = "Ingredient", menuName = "TheHotdogStand/Ingredient")]
+
 public class Ingredient : ScriptableObject 
 {
     public string ingredientID;

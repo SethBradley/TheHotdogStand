@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SerializationManager
 {
-    public static bool Save(string saveName, object saveData)
+    public static bool CreateNewSave(string saveName, object saveData)
     {
         //Creates the BinaryFormatter class we need to Serialize/Deserialize
         BinaryFormatter formatter = GetBinaryFormatter();
@@ -31,11 +31,22 @@ public class SerializationManager
 
     }
 
+    public static void Save(string savePath, object saveData)
+    {
+        BinaryFormatter formatter = GetBinaryFormatter();
+
+        FileStream file = File.Create(savePath);
+
+        formatter.Serialize(file, saveData);
+        
+        file.Close();
+    }
+
 
     public static object Load(string path)
     {
         //If a file does not exist at the given path, return null
-        if (!File.Exists(path))
+        if (!File.Exists(path + ".save"))
         {
             return null;
         }
@@ -45,7 +56,7 @@ public class SerializationManager
 
 
         //Will set the file at the given path to FileMode.Open
-        FileStream file = File.Open(path, FileMode.Open);
+        FileStream file = File.Open(path + ".save", FileMode.Open);
 
 
         //Will Try to append the deserialized data to save obj
@@ -62,7 +73,7 @@ public class SerializationManager
         //Maybe save was corrupted, deleted
         catch
         {
-            Debug.LogErrorFormat("Failed to load file at ", path);
+            Debug.LogErrorFormat("Failed to load file at ", path + ".save");
             file.Close();
             return null;
         }

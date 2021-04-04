@@ -26,10 +26,11 @@ public class LoadGameHandler : MonoBehaviour
     void LoadGameData()
     {
         
-        string path = Application.persistentDataPath + "/saves/SaveDataSlot_" + selectedSaveSlot + ".save";
+        string path = Application.persistentDataPath + "/saves/SaveDataSlot_" + selectedSaveSlot;
         
         SaveData.current = (SaveData)SerializationManager.Load(path);
         SaveData.current.savePath = path;
+        Debug.Log(SaveData.current.savePath);
         GameManager.instance.selectedSaveData = SaveData.current;
         
         GameManager.instance.selectedSaveSlot = GameManager.instance.selectedSaveData.saveSlotNumber;
