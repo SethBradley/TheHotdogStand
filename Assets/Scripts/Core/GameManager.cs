@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void SaveGameData()
+    {
+        SerializationManager.Save(SaveData.current.savePath, SaveData.current);
+    }
+
     public IEnumerator GetLoadGameProgress()
     {
         for (int i = 0; i < scenesLoading.Count; i++)

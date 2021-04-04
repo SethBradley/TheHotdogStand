@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     //Save Data
     public float dailyEarnings;
+   
     //
     public static PlayerController instance;
     public Camera mainCam;

@@ -31,16 +31,20 @@ public class GameController : MonoBehaviour
 
     public void StartDay()
     {
+        currentDay = SaveData.current.currentDay;
         playerInventory = GetInventoryCountForEachItem();
         gameControllerUI.TickNewDay(currentDay);
+        
         
     }
 
     public void EndDay()
     {
+        currentDay++;
+        totalMoney += PlayerController.instance.dailyEarnings;
         PlayerController.instance.gameObject.SetActive(false);
         sceneTransitionWindow.SetActive(true);
-        totalMoney += PlayerController.instance.dailyEarnings;
+        
         SavePlayerData();
     }
 
@@ -49,7 +53,9 @@ public class GameController : MonoBehaviour
     {
 
         SaveData.current.totalMoney = totalMoney;
-        CreateSaveDictionary(playerInventory);
+        SaveData.current.currentDay = currentDay;
+        SaveData.current.playerInventory = CreateSaveDictionary(playerInventory);
+        GameManager.instance.SaveGameData();
     }
 
     private Dictionary<Ingredient,int> GetInventoryCountForEachItem()

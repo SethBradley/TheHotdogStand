@@ -25,9 +25,10 @@ public class SaveData
 
     //public PlayerProfile profile;
     public int saveSlot;
+    public string savePath;
     public float totalMoney;
     public int currentDay;
-    static public Dictionary<Object, int> playerInventory;
+    public Dictionary<Object, int> playerInventory;
 
     //Public ScriptableObj Inventory?
     //Public ScriptableObj Upgrades?
