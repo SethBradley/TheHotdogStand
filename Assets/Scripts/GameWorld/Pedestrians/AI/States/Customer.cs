@@ -48,6 +48,7 @@ public class Customer : IState
         patienceMeter = pedestrian._patienceMeter.GetComponent<PatienceMeter>();
         findOrderTimer = SethUtils.MathTools.RandomNumberGeneration(2f, 5f);
         //Debug.Log(findOrderTimer);
+        pedestrian.isCustomer = true;
     }
 
     public void Tick()
@@ -72,7 +73,7 @@ public class Customer : IState
     public void OnExit()
     {
         Debug.Log("Exiting Customer state");
-
+        pedestrian.isCustomer = false;
         target.occupant = null;
         pedestrian.searchForTarget = true;
         agent.enabled = true;

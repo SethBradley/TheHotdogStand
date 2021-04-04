@@ -19,7 +19,7 @@ public class Clock : MonoBehaviour
     {
         progressedTime += Time.deltaTime;
         // Debug.Log(progressedTime);
-        if (progressedTime >= 1f)
+        if (progressedTime >= 10f)
         {
             progressedTime = 0;
 

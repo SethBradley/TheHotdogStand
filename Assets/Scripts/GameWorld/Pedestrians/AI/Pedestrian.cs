@@ -20,7 +20,7 @@ public class Pedestrian : MonoBehaviour
     public GameObject orderBubble;
 
     
-
+    public bool isCustomer;
     public bool changeState;
     public bool searchForTarget = true;
 
@@ -37,8 +37,10 @@ public class Pedestrian : MonoBehaviour
         stateMachine = new StateMachine();
         newStateDict = new Dictionary<NPC_InteractableType, IState>();
 
+        isCustomer = false;
         _target = GetRandomExit();
         _exitTarget = _target;
+        Debug.Log(this.transform.name + "'s target is " + _target);
         _agent = this.GetComponent<NavMeshAgent>();
         _anim = this.GetComponent<Animator>();
         _checkedTargets = new List<GameObject>();
@@ -185,7 +187,8 @@ public class Pedestrian : MonoBehaviour
     IEnumerator CustomerBeginWait()
     {
         yield return new WaitForSeconds(10);
-        CustomerLeave();
+        if (isCustomer)
+            CustomerLeave();
     }
     
 
@@ -273,9 +276,11 @@ public class Pedestrian : MonoBehaviour
     public void CustomerLeave()
     {
         changeState = true;
+        _target.occupant = null;
         var patienceMeter = transform.Find("PatienceCanvas(Clone)");
         var orderBubble = transform.Find("OrderBubble 1(Clone)");
         _target = GetRandomExit();
+        Debug.Log("Executed CustomerLeave()");
         GameObject.Destroy(patienceMeter.gameObject);
         GameObject.Destroy(orderBubble.gameObject);
         

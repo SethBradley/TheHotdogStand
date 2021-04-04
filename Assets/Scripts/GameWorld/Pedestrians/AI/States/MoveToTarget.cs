@@ -42,7 +42,7 @@ public class MoveToTarget : IState
         {
             //Debug.Log("Target changed, setting new destination");
             target = pedestrian._target.GetComponent<Interactable>();
-            //Debug.Log(target);
+            Debug.Log("NPC current target is " + target);
             agent.SetDestination(target.transform.position);
             return;
         }
@@ -52,19 +52,20 @@ public class MoveToTarget : IState
         {
             if (target.interaction.interactionType == 0)
             {
+                Debug.Log("NPC found their exit");
                 PedestrianSpawnController.instance.CycleNPC(pedestrian);
                 return;
             }
             
             pedestrian.changeState = true;
-            Debug.Log("Changed Pedestrian changeState to true");
+            //Debug.Log("Changed Pedestrian changeState to true");
         }
         
     }
 
     public void OnExit()
     {
-       // Debug.Log("exiting move to Target");
+        Debug.Log("exiting move to Target");
         anim.SetBool("Walking", false);
         agent.enabled = false;
     }

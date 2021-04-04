@@ -1416,6 +1416,7 @@ GameObject:
   - component: {fileID: 6571816479328774543}
   - component: {fileID: 7602622040533023151}
   - component: {fileID: 7111787388217542267}
+  - component: {fileID: -7404021420768073079}
   m_Layer: 0
   m_Name: NPC_Male_Hoodie
   m_TagString: Untagged
@@ -1491,6 +1492,7 @@ MonoBehaviour:
   _anim: {fileID: 0}
   _patienceMeter: {fileID: 7124163554444034748, guid: b8b0c5b62c44e9145b010f9191ca063e, type: 3}
   orderBubble: {fileID: 6486458179343255009, guid: c761d9829e8ce2b489d32e29a37c03c8, type: 3}
+  isCustomer: 0
   changeState: 0
   searchForTarget: 1
 --- !u!195 &7111787388217542267
@@ -1502,8 +1504,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 7368494006678774102}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.12
-  m_Speed: 3.5
+  m_Radius: 0.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1513,8 +1515,22 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7404021420768073079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368494006678774102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bd5eb50d06adc468e91812e7cf16b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standInteractabledata: {fileID: 11400000, guid: 144c4f2092fec13419563356aeb7979b, type: 2}
+  interactionComponent: 10
 --- !u!1 &7577443912535756657
 GameObject:
   m_ObjectHideFlags: 0

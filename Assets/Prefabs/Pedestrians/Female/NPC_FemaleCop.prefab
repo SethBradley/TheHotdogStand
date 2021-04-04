@@ -615,6 +615,7 @@ MonoBehaviour:
   _anim: {fileID: 0}
   _patienceMeter: {fileID: 7124163554444034748, guid: b8b0c5b62c44e9145b010f9191ca063e, type: 3}
   orderBubble: {fileID: 6486458179343255009, guid: c761d9829e8ce2b489d32e29a37c03c8, type: 3}
+  isCustomer: 0
   changeState: 0
   searchForTarget: 1
 --- !u!195 &591587541515916968
@@ -626,8 +627,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 591587541446757688}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.12
-  m_Speed: 3.5
+  m_Radius: 0.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -646,7 +647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591587541446757688}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7bd5eb50d06adc468e91812e7cf16b7, type: 3}
   m_Name: 

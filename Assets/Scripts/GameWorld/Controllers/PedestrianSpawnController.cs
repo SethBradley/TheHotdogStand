@@ -24,8 +24,19 @@ public class PedestrianSpawnController : MonoBehaviour
         _pedestrian.gameObject.SetActive(false);
         _pedestrian._checkedTargets?.Clear();
         _pedestrian._customerOrder?.Clear();
+        var previousExit = _pedestrian._target;
+        var newExit = _pedestrian.GetRandomExit();
+        if (newExit != previousExit)
+        {
+            _pedestrian._target =newExit;
+            _pedestrian._exitTarget = _pedestrian._target;
+        }
+
+        else
+        {
         _pedestrian._target = _pedestrian.GetRandomExit();
-        _pedestrian._exitTarget = _pedestrian._target;
+        }
+        
         
 
         StartCoroutine(RespawnNPCTimer(_pedestrian));
@@ -52,7 +63,7 @@ public class PedestrianSpawnController : MonoBehaviour
             
             GameObject newPedestrian = Instantiate(pedestrian) as GameObject;
             newPedestrian.transform.position = randomExit.transform.localPosition;
-            Debug.Log("NPC Spawned at " + randomExit.transform.position);
+            Debug.Log("NPC Spawned at " + randomExit.name + " and their current target is " + newPedestrian.GetComponent<Pedestrian>()._exitTarget);
             
             yield return new WaitForSeconds(4);
         }

@@ -1601,6 +1601,7 @@ GameObject:
   - component: {fileID: 146336985590846838}
   - component: {fileID: 5122814292646375076}
   - component: {fileID: 3342895957766714870}
+  - component: {fileID: -1529536865092645827}
   m_Layer: 0
   m_Name: NPC_BusinessMan_Shirt
   m_TagString: Untagged
@@ -1652,10 +1653,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 4633336674030898640}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.12
-  m_Speed: 3.5
+  m_Radius: 0.5
+  m_Speed: 3
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 1
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -1663,7 +1664,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5122814292646375076
 MonoBehaviour:
@@ -1685,6 +1686,7 @@ MonoBehaviour:
   _anim: {fileID: 0}
   _patienceMeter: {fileID: 7124163554444034748, guid: b8b0c5b62c44e9145b010f9191ca063e, type: 3}
   orderBubble: {fileID: 6486458179343255009, guid: c761d9829e8ce2b489d32e29a37c03c8, type: 3}
+  isCustomer: 0
   changeState: 0
   searchForTarget: 1
 --- !u!65 &3342895957766714870
@@ -1700,6 +1702,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 1.92, z: 0.72}
   m_Center: {x: 0, y: 0.81, z: 0}
+--- !u!114 &-1529536865092645827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633336674030898640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bd5eb50d06adc468e91812e7cf16b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standInteractabledata: {fileID: 11400000, guid: 144c4f2092fec13419563356aeb7979b, type: 2}
+  interactionComponent: 10
 --- !u!1 &4633336674030898644
 GameObject:
   m_ObjectHideFlags: 0
