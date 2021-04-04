@@ -12,7 +12,11 @@ public class GameController : MonoBehaviour
     
     public List<Interactable> exits;
     public List<GameObject> HotdogStandSpots;
+    public Dictionary<Ingredient,int> playerInventory;
+    public float totalMoney;
+    public int currentDay;
     
+    [SerializeField] GameControllerUI gameControllerUI;
 
     void Awake()
     {
@@ -27,13 +31,16 @@ public class GameController : MonoBehaviour
 
     public void StartDay()
     {
-        GetInventoryCountForEachItem();
+        playerInventory = GetInventoryCountForEachItem();
+        gameControllerUI.TickNewDay(currentDay);
+        
     }
 
     public void EndDay()
     {
         PlayerController.instance.gameObject.SetActive(false);
         sceneTransitionWindow.SetActive(true);
+        totalMoney += PlayerController.instance.dailyEarnings;
         SavePlayerData();
     }
 
@@ -41,10 +48,11 @@ public class GameController : MonoBehaviour
     public void SavePlayerData()
     {
 
-        SaveData.current.totalMoney += PlayerController.instance.dailyEarnings;
+        SaveData.current.totalMoney = totalMoney;
+        CreateSaveDictionary(playerInventory);
     }
 
-    private void GetInventoryCountForEachItem()
+    private Dictionary<Ingredient,int> GetInventoryCountForEachItem()
     {
         Dictionary<Ingredient,int> NewDayInventoryCount = new Dictionary<Ingredient, int>();
 
@@ -65,7 +73,28 @@ public class GameController : MonoBehaviour
             
         }
 
+        return NewDayInventoryCount;
+
+        
     }
+
+    private Dictionary<Object,int> CreateSaveDictionary(Dictionary<Ingredient,int> _inventory)
+    {
+        Dictionary<Object,int> inventoryToSave = new Dictionary<Object, int>();
+
+        foreach (var entry in _inventory)
+        {
+            inventoryToSave.Add(entry.Key, entry.Value);            
+        }
+
+        return inventoryToSave;
+
+
+        
+
+    }
+
+
 
 }
 
