@@ -31,11 +31,11 @@ public class SerializationManager
 
     }
 
-    public static void Save(string savePath, object saveData)
+    public static void Save(string savePath, SaveData saveData)
     {
         BinaryFormatter formatter = GetBinaryFormatter();
 
-        FileStream file = File.Create(savePath);
+        FileStream file = File.Create(savePath + ".save");
 
         formatter.Serialize(file, saveData);
         

@@ -7,7 +7,7 @@ public class LoadGameHandler : MonoBehaviour
     int selectedSaveSlot;
     public void ClickLoadGameSlot(int saveSlot) => VerifyExistingData(saveSlot);
     
-
+    
 
     void VerifyExistingData(int saveSlot)
     {

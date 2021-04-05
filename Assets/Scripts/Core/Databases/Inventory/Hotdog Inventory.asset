@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 1
   inventoryList:
   - ingredient: {fileID: 11400000, guid: 00c8bf51e8bcffc4aa35da80d4410607, type: 2}
-    amount: 1323
+    amount: 10

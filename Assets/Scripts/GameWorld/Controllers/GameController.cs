@@ -24,18 +24,18 @@ public class GameController : MonoBehaviour
         
     }
     
-    private void Start() {
+    private void Start() 
+    {
         StartDay();
     }
 
 
     public void StartDay()
     {
+        LoadPlayerInventory();
         currentDay = SaveData.current.currentDay;
         playerInventory = GetInventoryCountForEachItem();
-        gameControllerUI.TickNewDay(currentDay);
-        
-        
+        gameControllerUI.TickNewDay(currentDay);   
     }
 
     [ContextMenu("End Day")]
@@ -55,8 +55,9 @@ public class GameController : MonoBehaviour
 
         SaveData.current.totalMoney = totalMoney;
         SaveData.current.currentDay = currentDay;
-        //ERRORSaveData.current.playerInventory = CreateSaveDictionary(playerInventory);
-        GameManager.instance.SaveGameData();
+        SavePlayerInventory(playerInventory);
+        StartCoroutine(WaitAndSave());
+        
     }
 
     private Dictionary<Ingredient,int> GetInventoryCountForEachItem()
@@ -69,7 +70,6 @@ public class GameController : MonoBehaviour
             {
                 NewDayInventoryCount.Add(entry.inventoryList[i].ingredient, entry.inventoryList[i].amount);                
             }
-            
         }
         
         return NewDayInventoryCount;
@@ -77,34 +77,40 @@ public class GameController : MonoBehaviour
         
     }
 
-    private void CreateSaveDictionary(Dictionary<Ingredient,int> _inventory)
+    private void SavePlayerInventory(Dictionary<Ingredient,int> _inventory)
     {
         
         Dictionary<Ingredient,int> inventoryToSave = new Dictionary<Ingredient, int>();
 
         foreach (var entry in _inventory)
         {
-            
-            //ERRORinventoryToSave.Add(entry.Key as Object, entry.Value);     
+            SaveData.current.count_playerInventory.Add(entry.Value);
         }
-
-
-        foreach (var entry in inventoryToSave)
-        {
-            Debug.Log(entry);     
-        }
-
-
-        Debug.Log(inventoryToSave);
-
-        //ERROR return inventoryToSave;
-
-
-        
-
     }
 
 
+    private void LoadPlayerInventory()
+    {
+        var saveDataCount = SaveData.current.count_playerInventory;
+
+        
+        
+        foreach (var entry in _inventoryHolder.ingredientInventories)
+        {
+            for (int i = 0; i < entry.inventoryList.Count; i++)
+            {
+                entry.inventoryList[i].amount = SaveData.current.count_playerInventory[i];
+                SaveData.current.count_playerInventory.RemoveAt(i);
+            }
+        }
+        
+    }
+
+    IEnumerator WaitAndSave()
+    {
+        yield return new WaitForSeconds(2);
+        GameManager.instance.SaveGameData();
+    }
 
 }
 

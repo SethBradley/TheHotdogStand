@@ -29,8 +29,8 @@ public class SaveData
     public string savePath;
     public float totalMoney;
     public int currentDay;
-    public List<UnityEngine.Object> Keys_playerInventory = new List<UnityEngine.Object>();
-    public List<int> Values_playerInventory = new List<int>();
+    //public List<Ingredient> Keys_playerInventory = new List<Ingredient>();
+    public List<int> count_playerInventory = new List<int>();
     //public Dictionary<UnityEngine.Object, int> playerInventory;
 
     //Public ScriptableObj Inventory?

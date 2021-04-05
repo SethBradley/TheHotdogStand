@@ -170,10 +170,10 @@ public class PlayerController : MonoBehaviour
                     if (entry.inventoryList[i].ingredient == ingredient)
                     {
                         entry.inventoryList[i].amount--;
-                        if (entry.inventoryList[i].amount.Equals(0))
+                        /*if (entry.inventoryList[i].amount.Equals(0))
                         {
                             entry.inventoryList.RemoveAt(i);
-                        }
+                        }*/
                     }
                 }
             }
