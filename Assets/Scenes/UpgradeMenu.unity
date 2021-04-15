@@ -567,6 +567,7 @@ GameObject:
   - component: {fileID: 386132535}
   - component: {fileID: 386132534}
   - component: {fileID: 386132533}
+  - component: {fileID: 386132536}
   m_Layer: 5
   m_Name: ButtonHolder
   m_TagString: Untagged
@@ -595,7 +596,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.16049047, y: 1}
   m_AnchoredPosition: {x: 1, y: -0.5}
-  m_SizeDelta: {x: 1.4401855, y: -1}
+  m_SizeDelta: {x: 4.7427, y: -1}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &386132533
 MonoBehaviour:
@@ -617,7 +618,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 105.4, y: 80.44}
+  m_CellSize: {x: 105.4, y: 81.82}
   m_Spacing: {x: 0, y: 0.1}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -659,6 +660,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386132531}
   m_CullTransparentMesh: 1
+--- !u!114 &386132536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386132531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829afae9de2f2ec4eb24442f3474ff02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabButtons: []
 --- !u!1 &492704482
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,10 +807,10 @@ RectTransform:
   m_Father: {fileID: 145840705}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 54.72, y: -0.14157104}
-  m_SizeDelta: {x: -109.44, y: -0.2831}
+  m_AnchorMin: {x: 0.5735096, y: 0.4064339}
+  m_AnchorMax: {x: 0.5735096, y: 0.4064339}
+  m_AnchoredPosition: {x: 5.898987, y: -0.13610077}
+  m_SizeDelta: {x: 549.1813, y: 254.7958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523417081
 MonoBehaviour:
@@ -870,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 54.72, y: 134.1}
+  m_AnchoredPosition: {x: 55.399, y: 134.1}
   m_SizeDelta: {x: -109.44, y: -268.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &863353928
@@ -1640,6 +1654,7 @@ GameObject:
   - component: {fileID: 1914909654}
   - component: {fileID: 1914909653}
   - component: {fileID: 1914909652}
+  - component: {fileID: 1914909655}
   m_Layer: 5
   m_Name: StatisticsButton
   m_TagString: Untagged
@@ -1749,3 +1764,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914909650}
   m_CullTransparentMesh: 1
+--- !u!114 &1914909655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914909650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae49bb29cb69f794093dff44fe4da2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabGroup: {fileID: 0}
+  background: {fileID: 0}
