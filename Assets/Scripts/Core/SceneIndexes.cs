@@ -6,5 +6,7 @@ public enum SceneIndexes
 {
     MANAGER = 0,
     MAIN_MENU = 1, 
-    GAMEWORLD = 2
+    GAMEWORLD = 2,
+
+    UPGRADE_MENU = 3
 }

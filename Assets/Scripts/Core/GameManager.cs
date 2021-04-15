@@ -34,6 +34,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GetLoadGameProgress());
         
     }
+    public void GameWorldToUpgradeMenu(SceneIndexes sceneIndex)
+    {
+        SceneManager.UnloadSceneAsync((int)SceneIndexes.GAMEWORLD);
+        SceneManager.LoadSceneAsync((int)SceneIndexes.UPGRADE_MENU, LoadSceneMode.Additive);
+
+        StartCoroutine(GetLoadGameProgress());
+    }
 
     public void SaveGameData()
     {

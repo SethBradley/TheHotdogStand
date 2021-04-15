@@ -34,13 +34,14 @@ public class GameController : MonoBehaviour
     {
         LoadPlayerInventory();
         currentDay = SaveData.current.currentDay;
-        playerInventory = GetInventoryCountForEachItem();
+        //playerInventory = GetInventoryCountForEachItem();
         gameControllerUI.TickNewDay(currentDay);   
     }
 
     [ContextMenu("End Day")]
     public void EndDay()
     {
+        Debug.Log("Day is ending");
         currentDay++;
         totalMoney += PlayerController.instance.dailyEarnings;
         PlayerController.instance.gameObject.SetActive(false);
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour
 
         SaveData.current.totalMoney = totalMoney;
         SaveData.current.currentDay = currentDay;
-        SavePlayerInventory(playerInventory);
+        SavePlayerInventory(GetInventoryCountForEachItem());
         StartCoroutine(WaitAndSave());
         
     }
@@ -70,6 +71,11 @@ public class GameController : MonoBehaviour
             {
                 NewDayInventoryCount.Add(entry.inventoryList[i].ingredient, entry.inventoryList[i].amount);                
             }
+        }
+
+        foreach (var entry in NewDayInventoryCount)
+        {
+            Debug.Log(entry);
         }
         
         return NewDayInventoryCount;
@@ -86,6 +92,12 @@ public class GameController : MonoBehaviour
         {
             SaveData.current.count_playerInventory.Add(entry.Value);
         }
+
+                Debug.Log("Here is each entry in save data inventory");
+        foreach (var entry in SaveData.current.count_playerInventory)
+        {
+            Debug.Log(entry);
+        }
     }
 
 
@@ -99,16 +111,27 @@ public class GameController : MonoBehaviour
         {
             for (int i = 0; i < entry.inventoryList.Count; i++)
             {
+                Debug.Log("your original amount of "
+                 + entry.inventoryList[i].ingredient.ingredientName +
+                 " is " + entry.inventoryList[i].amount);
+               
                 entry.inventoryList[i].amount = SaveData.current.count_playerInventory[i];
                 SaveData.current.count_playerInventory.RemoveAt(i);
+            
+                Debug.Log("Loaded data, now your  "
+                + entry.inventoryList[i].ingredient.ingredientName +
+                " amount is " + entry.inventoryList[i].amount);
+            
             }
         }
         
+
     }
 
     IEnumerator WaitAndSave()
     {
         yield return new WaitForSeconds(2);
+        Debug.Log("Game Saved");
         GameManager.instance.SaveGameData();
     }
 
