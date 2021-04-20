@@ -15,4 +15,8 @@ MonoBehaviour:
   type: 0
   inventoryList:
   - ingredient: {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
-    amount: 895
+    amount: 10
+  - ingredient: {fileID: 11400000, guid: 754cc6fdf9e8cd046b8c5b8ece67a2f1, type: 2}
+    amount: 0
+  - ingredient: {fileID: 11400000, guid: 4f9b720a445bc2b46a37927931ce39a2, type: 2}
+    amount: 0

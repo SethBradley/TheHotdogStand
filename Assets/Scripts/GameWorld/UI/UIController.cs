@@ -6,6 +6,10 @@ public class UIController : MonoBehaviour
 {
     
     public GameObject orderEntrySlot;
+    public GameObject interactionWindow;
+    public GameObject currentOrderWindow;
+    public GameObject orderUpWindow;
+    [HideInInspector]
     public InteractionComponent interactionComponent;
         void Start()
     {
@@ -17,7 +21,7 @@ public class UIController : MonoBehaviour
     void ToggleInteractionWindow(InteractionComponent _interactionComponent,  bool _boolean)
     {
         interactionComponent = _interactionComponent;
-        transform.Find("InteractionWindow").transform.gameObject.SetActive(_boolean);
+        interactionWindow.SetActive(_boolean);
     }
 
 
@@ -46,8 +50,8 @@ public class UIController : MonoBehaviour
 
     public void CloseOrderWindow()
     {
-        var currentOrderWindow = transform.Find("CurrentOrderWindow");
-        var orderUpWindow = transform.Find("OrderupWindow");
+        //var currentOrderWindow = transform.Find("CurrentOrderWindow");
+        //var orderUpWindow = transform.Find("OrderupWindow");
 
         if (currentOrderWindow.gameObject.activeSelf)
         {
@@ -56,6 +60,13 @@ public class UIController : MonoBehaviour
         }
     }
     
+    private void OnDisable() 
+    {
+        StandInteractable.InteractableToggle -= ToggleInteractionWindow;
+        PlayerController.AddToOrderSlotUI -= AddToOrderUI;
+        PlayerController.ClearOrderSlots -= CloseOrderWindow;
+
+    }
 
 
 }

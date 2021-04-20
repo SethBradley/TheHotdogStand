@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 996c6d55b4e364447bb856005c13fca7, type: 3}
-  m_Name: Normal Bun
+  m_Name: The Clap Attack
   m_EditorClassIdentifier: 
-  ingredientID: bun_001
+  ingredientID: bun_003
   ingredientType: 0
-  ingredientName: Normal  Bun
-  sprite: {fileID: 21300000, guid: d01d1c3f7b677204da32da93b7ccdcc3, type: 3}
-  description: Why do hotdogs come in a pack of 10 but these buns come in a pack
-    of 8?
-  sellValue: 0.75
-  buyValue: 0.2
-  discovered: 1
+  ingredientName: The Clap Attack Bun
+  sprite: {fileID: 0}
+  description: 'A brand of buns known for their seismic proportion. Commonly promoted
+    by rap stars and squat enthusiasts. '
+  sellValue: 2.5
+  buyValue: 0.5
+  discovered: 0

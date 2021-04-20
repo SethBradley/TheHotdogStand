@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: IngredientDatabase
   m_EditorClassIdentifier: 
   allIngredients:
-  - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
   - {fileID: 11400000, guid: 00c8bf51e8bcffc4aa35da80d4410607, type: 2}
+  - {fileID: 11400000, guid: 66ad2ac2c1015f94aa7930dd4053d42e, type: 2}
+  - {fileID: 11400000, guid: 3d549bc12cbad174d9e4e54058fda546, type: 2}
+  - {fileID: 11400000, guid: 56613be5504f26e42a171ef3290d5347, type: 2}
+  - {fileID: 11400000, guid: 754cc6fdf9e8cd046b8c5b8ece67a2f1, type: 2}
+  - {fileID: 11400000, guid: 4f9b720a445bc2b46a37927931ce39a2, type: 2}
   - {fileID: 11400000, guid: fc36da08296ff6d4da1d568488740e54, type: 2}
   - {fileID: 11400000, guid: 2fb3056e0d25e214bb7101ca4dcbc211, type: 2}
   - {fileID: 11400000, guid: cbed602fa06b98c4384562886e11242a, type: 2}

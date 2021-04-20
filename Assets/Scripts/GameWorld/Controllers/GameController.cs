@@ -20,12 +20,18 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+        else 
+            instance = this;
+
+        
         
     }
     
     private void Start() 
     {
+        GameManager.instance.ChangeActiveScene();
         StartDay();
     }
 
@@ -54,7 +60,7 @@ public class GameController : MonoBehaviour
     public void SavePlayerData()
     {
 
-        SaveData.current.totalMoney = totalMoney;
+        SaveData.current.totalMoney += totalMoney;
         SaveData.current.currentDay = currentDay;
         SavePlayerInventory(GetInventoryCountForEachItem());
         StartCoroutine(WaitAndSave());
@@ -116,7 +122,7 @@ public class GameController : MonoBehaviour
                  " is " + entry.inventoryList[i].amount);
                
                 entry.inventoryList[i].amount = SaveData.current.count_playerInventory[i];
-                SaveData.current.count_playerInventory.RemoveAt(i);
+                //SaveData.current.count_playerInventory.RemoveAt(i);
             
                 Debug.Log("Loaded data, now your  "
                 + entry.inventoryList[i].ingredient.ingredientName +
@@ -133,6 +139,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(2);
         Debug.Log("Game Saved");
         GameManager.instance.SaveGameData();
+        GameManager.instance.GameWorldToUpgradeMenu();
     }
 
 }

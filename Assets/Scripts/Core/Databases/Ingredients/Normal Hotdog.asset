@@ -16,7 +16,8 @@ MonoBehaviour:
   ingredientType: 1
   ingredientName: Normal Hotdog
   sprite: {fileID: 21300000, guid: af2e64b1bc1bd0d40b65147759486dea, type: 3}
-  description: Mmm.. Beefy
+  description: From the Supermarket. Made from Premium Quality fatty tissues, animal
+    tissues, and other slaughter trimmings packed neatly into casing. Yum!
   sellValue: 0.75
-  buyValue: 1
+  buyValue: 0.2
   discovered: 1

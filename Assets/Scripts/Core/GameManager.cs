@@ -31,13 +31,17 @@ public class GameManager : MonoBehaviour
         SceneManager.UnloadSceneAsync((int)SceneIndexes.MAIN_MENU);
         SceneManager.LoadSceneAsync((int)SceneIndexes.GAMEWORLD, LoadSceneMode.Additive);
 
+        
+
         StartCoroutine(GetLoadGameProgress());
+
         
     }
-    public void GameWorldToUpgradeMenu(SceneIndexes sceneIndex)
+    public void GameWorldToUpgradeMenu()
     {
         SceneManager.UnloadSceneAsync((int)SceneIndexes.GAMEWORLD);
         SceneManager.LoadSceneAsync((int)SceneIndexes.UPGRADE_MENU, LoadSceneMode.Additive);
+        
 
         StartCoroutine(GetLoadGameProgress());
     }
@@ -59,7 +63,21 @@ public class GameManager : MonoBehaviour
         
         //yield return new WaitForSeconds(4);
         
-
+        
         loadingScreen.gameObject.SetActive(false);
+    }
+
+    public void ChangeActiveScene()
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
+    }
+
+    public void LoadNextDay()
+    {
+        loadingScreen.gameObject.SetActive(true);
+        SceneManager.UnloadSceneAsync((int)SceneIndexes.UPGRADE_MENU);
+        SceneManager.LoadSceneAsync((int)SceneIndexes.GAMEWORLD, LoadSceneMode.Additive);
+
+        StartCoroutine(GetLoadGameProgress());
     }
 }

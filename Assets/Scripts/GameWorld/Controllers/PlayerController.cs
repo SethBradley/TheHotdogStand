@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void OnDisable() 
+    {
+        OrderUpWindow.OnAttemptToDeliver -= DeliverOrder;    
+    }
 
     private void Update() 
     {

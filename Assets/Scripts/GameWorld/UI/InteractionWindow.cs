@@ -28,10 +28,13 @@ public class InteractionWindow : MonoBehaviour
         
         foreach (var entry in selectedInventory.inventoryList)
         {
+            if (entry.ingredient.discovered)
+            {
             transform.GetChild(x).gameObject.SetActive(true);
             transform.GetChild(x).GetComponent<IngredientSlot>().UpdateSlot(entry.ingredient, entry.amount);
             transform.GetChild(x).GetComponent<IngredientSlot>().OnCloseInteractionWindow += CloseInteractionWindow;
             x++;
+            }
         }    
         x = 0;
     }

@@ -16,6 +16,9 @@ public class Ingredient : ScriptableObject
     
     public string ingredientName;
     public Sprite sprite;
+
+
+    [TextArea(3,10)]
     public string description;
 
     public float sellValue;
@@ -23,6 +26,8 @@ public class Ingredient : ScriptableObject
     public float buyValue;
 
     public bool discovered;
+
+    public string unlockRequirement;
     
     
 }

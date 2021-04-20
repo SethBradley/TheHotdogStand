@@ -31,7 +31,11 @@ public class NewGameHandler : MonoBehaviour
 
         SaveData newSaveData = new SaveData();
         newSaveData.count_playerInventory.Add(10);
+        newSaveData.count_playerInventory.Add(0);
+        newSaveData.count_playerInventory.Add(0);
         newSaveData.count_playerInventory.Add(10);
+        newSaveData.count_playerInventory.Add(0);
+        newSaveData.count_playerInventory.Add(0);
         newSaveData.saveSlotNumber = selectedSaveSlot;
         
 

@@ -8814,6 +8814,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderEntrySlot: {fileID: 7108530088908773097, guid: f8e13aebcd90abe41910f5a3a3dfec4a, type: 3}
+  interactionWindow: {fileID: 1104656588}
+  currentOrderWindow: {fileID: 222433912}
+  orderUpWindow: {fileID: 2086089636}
   interactionComponent: 0
 --- !u!1001 &1341845231
 PrefabInstance:

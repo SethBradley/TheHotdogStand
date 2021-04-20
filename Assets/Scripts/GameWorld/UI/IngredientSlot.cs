@@ -25,8 +25,9 @@ public class IngredientSlot : MonoBehaviour
     {
         var currentOrder = PlayerController.instance.currentOrder;
         
+        
 
-        if (!currentOrder.Contains(ingredient))
+        if (!currentOrder.Contains(ingredient) && amount > 0)
         {
             PlayerController.instance.AddToOrder(ingredient);
             PlayerController.instance.windowOpened = false;
@@ -48,6 +49,11 @@ public class IngredientSlot : MonoBehaviour
         {
             ingredient = _ingredient;
             amount = _amount;
+            if (amount <= 0)
+            {
+                //Set Sprite to empty 
+                GetComponent<Image>().color = Color.red;
+            }
             sprite = _ingredient.sprite;
             GetComponent<Image>().sprite = _ingredient.sprite;
         }
