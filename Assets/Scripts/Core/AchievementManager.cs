@@ -112,7 +112,6 @@ public class AchievementManager : MonoBehaviour
     public void AchievementUnlock_YourFirstSale()
     {
         achievementDict["Your First Sale"] = true;
-        SaveData.current.totalMoney += 5f;
     }
 
     public void AchievementUnlock_DogDisher()
