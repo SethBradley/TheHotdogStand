@@ -64,6 +64,7 @@ public class GameController : MonoBehaviour
         SaveData.current.currentDay = currentDay;
         SavePlayerInventory(GetInventoryCountForEachItem());
         StartCoroutine(WaitAndSave());
+        AchievementManager.instance.SaveAchievementData();
         
     }
 

@@ -138,6 +138,8 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (var item in currentOrder)
                 {
+                    CheckCondimentForAchievement(item);
+
                     if (!customerOrder.Contains(item))
                     {
                         Debug.Log("Incorrect order");
@@ -154,9 +156,38 @@ public class PlayerController : MonoBehaviour
 
                 AddToDailyEarning(costOfOrder);
                 dailyEarnings += costOfOrder;
+                
+                AchievementManager.instance.CheckAchievementEligbility();
+                AchievementManager.totalCompletedOrders++;
+
                 ClearOrder();
                 customer.GetComponent<Pedestrian>().CustomerLeave();
+
+                Debug.Log("Total Ketchup orders: " + AchievementManager.totalKetchupOrders);
+            }
+        }
+
+        void CheckCondimentForAchievement(Ingredient _ingredient)
+        {
+            if (_ingredient.ingredientType != ingredientType.CONDIMENT)
+                return;
+            
+            switch (_ingredient.ingredientName)
+            {
+                case "Mayo":
+                    AchievementManager.totalMayoOrders++;
+                    break;
+
+                case "Ketchup":
+                    AchievementManager.totalKetchupOrders++;
+                    break;
+
+                case "Mustard":
+                    AchievementManager.totalMustardOrders++;
+                    break;
                 
+                default:
+                    break;
             }
         }
     }

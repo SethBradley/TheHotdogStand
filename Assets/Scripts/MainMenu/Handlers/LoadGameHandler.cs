@@ -30,11 +30,11 @@ public class LoadGameHandler : MonoBehaviour
         
         SaveData.current = (SaveData)SerializationManager.Load(path);
         SaveData.current.savePath = path;
-        Debug.Log(SaveData.current.savePath);
+        AchievementManager.instance.LoadAchievementData();
+
         GameManager.instance.selectedSaveData = SaveData.current;
         
         GameManager.instance.selectedSaveSlot = GameManager.instance.selectedSaveData.saveSlotNumber;
-
         GameManager.instance.LoadGame();
 
     }

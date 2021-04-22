@@ -29,32 +29,13 @@ public class SaveData
     public string savePath;
     public float totalMoney;
     public int currentDay;
-    //public List<Ingredient> Keys_playerInventory = new List<Ingredient>();
     public List<int> count_playerInventory = new List<int>();
-    //public Dictionary<UnityEngine.Object, int> playerInventory;
 
-    //Public ScriptableObj Inventory?
-    //Public ScriptableObj Upgrades?
-    //Public ScriptableObj Achievements?
+    public bool[] achievementArray = new bool[9];
+    public bool[] achievementRewardClaimedArray = new bool[9];
+    public int _totalCompletedOrders;
+    public int _totalMayoOrders;
+    public int _totalKetchupOrders;
+    public int _totalMustardOrders;
 
-
-    /*public void OnBeforeSerialize()
-    {
-        Keys_playerInventory.Clear();
-        Values_playerInventory.Clear();
-        
-        foreach (var entry in playerInventory)
-        {
-            Keys_playerInventory.Add(entry.Key);
-            Values_playerInventory.Add(entry.Value);
-        }
-    }
-
-    public void OnAfterDeserialize()
-    {
-        playerInventory = new Dictionary<UnityEngine.Object, int>();
-
-        for (int i = 0; i != Math.Min(Keys_playerInventory.Count, Values_playerInventory.Count); i++)
-            playerInventory.Add(Keys_playerInventory[i], Values_playerInventory[i]);        
-    }*/
 }
