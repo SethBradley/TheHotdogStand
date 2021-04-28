@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
                     }
 
                     costOfOrder += item.sellValue;
+                    costOfOrder *= SaveData.current.saleModifier;
                     continue;
                 }
 

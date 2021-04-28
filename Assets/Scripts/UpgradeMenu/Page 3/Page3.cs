@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Page3 : MonoBehaviour
 {
@@ -44,8 +45,34 @@ public class Page3 : MonoBehaviour
 
     private void UpdateUpgradeUI()
     {
+        float saleModifier = SaveData.current.saleModifier;
+        float patienceModifier = SaveData.current.patienceModifier;
+
         SalesWindow.transform.Find("Slider_Token_Fillamount").GetComponent<Slider>().value = SaveData.current.upgradeData[0];
         PatienceWindow.transform.Find("Slider_Token_Fillamount").GetComponent<Slider>().value = SaveData.current.upgradeData[1];
+    
+        SalesWindow.transform.Find("DescriptionText").GetComponent<TMP_Text>().text = $"Price Markup: {saleModifier}x";
+        SalesWindow.transform.Find("DescriptionText").GetComponent<TMP_Text>().text = $"Patience: {patienceModifier} seconds";
+    }
 
+    public void LevelUpSales()
+    {
+        var upgradeLevel = SalesWindow.transform.Find("Slider_Token_Fillamount").GetComponent<Slider>();
+        if (upgradeLevel.value <= 8)
+        {
+            SaveData.current.upgradeData[0] ++;
+            SaveData.current.saleModifier += 0.15f;
+            UpdateUpgradeUI();
+        }
+    }
+    public void LevelUpPatience()
+    {
+        var upgradeLevel = PatienceWindow.transform.Find("Slider_Token_Fillamount").GetComponent<Slider>();
+        if (upgradeLevel.value <= 8)
+        {
+            SaveData.current.upgradeData[1] ++;
+            SaveData.current.patienceModifier += 0.4f;
+            UpdateUpgradeUI();
+        }
     }
 }

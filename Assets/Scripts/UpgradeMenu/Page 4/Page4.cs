@@ -35,6 +35,7 @@ public class Page4 : MonoBehaviour
         {
             if (achivementUnlockedStatus[x])
             {
+                Debug.Log(window.gameObject.name + " has been unlocked. Setting Emblem");
                 if (!achievementRewardClaimed[x])
                 {
                     window.transform.Find("Labe_Large_Orange").Find("Achievement_RewardButton").gameObject.SetActive(true);
@@ -46,7 +47,8 @@ public class Page4 : MonoBehaviour
                 }
                 x++;
                 continue;
-            }          
+            }
+            x++;
         }
     }
 

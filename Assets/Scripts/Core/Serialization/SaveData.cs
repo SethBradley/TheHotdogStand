@@ -37,6 +37,8 @@ public class SaveData
     public int _totalMayoOrders;
     public int _totalKetchupOrders;
     public int _totalMustardOrders;
-    public List<int> upgradeData = new List<int>(); 
+    public List<int> upgradeData = new List<int>();
+    public float saleModifier;
+    public float patienceModifier;
 
 }
