@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardsHandler : MonoBehaviour
+public class RewardsHandler
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void GiveReward(int rewardIndex)
+    {
+        SaveData.current.achievementRewardClaimedArray[rewardIndex] = true;
+
+        switch (rewardIndex)
+        {
+            case 0:
+                Reward_YourFirstSale();
+                break;
+
+            case 1:
+                Reward_DogDisher();
+                break;
+            
+            default:
+                break;
+        }
+    }
+
+    private void Reward_DogDisher()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reward_YourFirstSale()
     {
-        
+        //Play noises / anims
+        SaveData.current.totalMoney += 5f;
+
     }
 }

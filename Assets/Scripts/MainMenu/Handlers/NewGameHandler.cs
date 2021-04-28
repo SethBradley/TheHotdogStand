@@ -30,6 +30,10 @@ public class NewGameHandler : MonoBehaviour
         Debug.Log("Creating new Save");
 
         SaveData newSaveData = new SaveData();
+
+        newSaveData.upgradeData.Add(0);
+        newSaveData.upgradeData.Add(0);
+        
         newSaveData.count_playerInventory.Add(10);
         newSaveData.count_playerInventory.Add(0);
         newSaveData.count_playerInventory.Add(0);

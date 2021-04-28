@@ -157,8 +157,9 @@ public class PlayerController : MonoBehaviour
                 AddToDailyEarning(costOfOrder);
                 dailyEarnings += costOfOrder;
                 
-                AchievementManager.instance.CheckAchievementEligbility();
+                
                 AchievementManager.totalCompletedOrders++;
+                AchievementManager.instance.CheckAchievementEligbility();
 
                 ClearOrder();
                 customer.GetComponent<Pedestrian>().CustomerLeave();

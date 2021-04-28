@@ -7,6 +7,7 @@ public class Page4 : MonoBehaviour
 {
     public List<GameObject> achievementWindowList;
     public List<bool> achivementUnlockedStatus;
+    private RewardsHandler rewardsHandler = new RewardsHandler();
 
     private void Awake() 
     {
@@ -16,6 +17,7 @@ public class Page4 : MonoBehaviour
 
     void LoadAchievementDataToList()
     {
+        Debug.Log("Loading AchievementData");
         var achievementDict = AchievementManager.instance.achievementDict;
         foreach (var entry in achievementDict)
         {
@@ -48,6 +50,20 @@ public class Page4 : MonoBehaviour
         }
     }
 
+    public void FindAndGiveReward(GameObject achievementWindow)
+    {
+        foreach (GameObject entry in achievementWindowList)
+        {
+            if (achievementWindow == entry)
+            {
+                rewardsHandler.GiveReward(achievementWindowList.IndexOf(entry));
+                entry.transform.Find("Labe_Large_Orange").Find("Achievement_RewardButton").gameObject.SetActive(false);
+                entry.transform.Find("Labe_Large_Orange").Find("Achievement_Badge").gameObject.SetActive(true);
+            }
+        }
+        GetComponent<Page3>().LoadUpgradeData();
+        GetComponent<UpgradeMenuHandler>().UpdateMoney();
+    }
 
 
 

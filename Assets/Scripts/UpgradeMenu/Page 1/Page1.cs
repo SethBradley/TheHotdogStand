@@ -26,7 +26,7 @@ namespace TheHotdogStand
         public void UpdateStats()
         {
             string normalDogsCount = SaveData.current.count_playerInventory[0].ToString();
-            string normalBunsCount = SaveData.current.count_playerInventory[1].ToString();
+            string normalBunsCount = SaveData.current.count_playerInventory[3].ToString();
 
             NormalHotdogCountText.text = $"Normal Hotdog.....................$1.00({normalDogsCount})";
             NormalBunCountText.text = $"Normal Bun.....................$1.00({normalBunsCount})";

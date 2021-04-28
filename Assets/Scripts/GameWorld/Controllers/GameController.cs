@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
     {
         
         Dictionary<Ingredient,int> inventoryToSave = new Dictionary<Ingredient, int>();
-
+        SaveData.current.count_playerInventory.Clear();
         foreach (var entry in _inventory)
         {
             SaveData.current.count_playerInventory.Add(entry.Value);

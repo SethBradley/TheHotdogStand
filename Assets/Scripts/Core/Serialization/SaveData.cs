@@ -37,5 +37,6 @@ public class SaveData
     public int _totalMayoOrders;
     public int _totalKetchupOrders;
     public int _totalMustardOrders;
+    public List<int> upgradeData = new List<int>(); 
 
 }

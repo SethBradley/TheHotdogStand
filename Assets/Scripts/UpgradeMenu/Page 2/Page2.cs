@@ -103,6 +103,10 @@ namespace TheHotdogStand
                         SaveData.current.count_playerInventory[0] += quantity;
                         break;
 
+                    case "bun_001":
+                        SaveData.current.count_playerInventory[3] += quantity;
+                        break;
+
                     default:
                         break;
                 }

@@ -44,7 +44,7 @@ public class SitAtBus : IState
 
     public void Tick()
     {
-        Debug.Log("Waiting at bus");
+//        Debug.Log("Waiting at bus");
         OrientToSeat();
        
         

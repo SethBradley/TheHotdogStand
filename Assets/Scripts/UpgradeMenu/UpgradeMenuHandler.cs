@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-namespace TheHotdogStand
-{
+
     public class UpgradeMenuHandler : MonoBehaviour
     {
         public TMP_Text dayText;
@@ -39,4 +38,4 @@ namespace TheHotdogStand
             GameManager.instance.LoadNextDay();
         }
     }
-}
+
