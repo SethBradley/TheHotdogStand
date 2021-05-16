@@ -35,6 +35,8 @@ public class NewGameHandler : MonoBehaviour
         newSaveData.upgradeData.Add(0);
         newSaveData.saleModifier = 1f;
         newSaveData.patienceModifier = 1f;
+        newSaveData._totalCompletedOrders = 100;
+
 
         newSaveData.count_playerInventory.Add(10);
         newSaveData.count_playerInventory.Add(0);

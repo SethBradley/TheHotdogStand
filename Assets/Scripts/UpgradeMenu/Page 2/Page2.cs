@@ -5,8 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-namespace TheHotdogStand
-{
+
     public class Page2 : MonoBehaviour
     {
         [Header("PurchaseWindow")]
@@ -26,8 +25,13 @@ namespace TheHotdogStand
         public Ingredient selectedItem;
         [Header("Other")]
         public GameObject nextDayButton;
+        public UpgradeMenuHandler upgradeMenuHandler;
         
 
+        private void Awake() 
+        {
+            upgradeMenuHandler = GetComponent<UpgradeMenuHandler>();
+        }
 
         public void ShopItemSelected(Ingredient _selectedItem)
         {
@@ -130,5 +134,26 @@ namespace TheHotdogStand
             purchaseWindow.SetActive(false);
             nextDayButton.SetActive(true);
         }
+
+        public void unlockIngredientsTier2()
+        {
+            if (SaveData.current.achievementRewardClaimedArray[2] == false)
+            {
+            return;
+            }
+            upgradeMenuHandler.tier2Hotdog.discovered = true;
+            upgradeMenuHandler.tier2Bun.discovered = true;
+            GetComponent<Page1>().UpdateStats();
+        }
+        public void unlockIngredientsTier3()
+        {
+            if (SaveData.current.achievementRewardClaimedArray[3] == false)
+            {
+            return;
+            }
+            upgradeMenuHandler.tier3Hotdog.discovered = true;
+            upgradeMenuHandler.tier3Bun.discovered = true;
+            GetComponent<Page1>().UpdateStats();
+        }
     }
-}
+

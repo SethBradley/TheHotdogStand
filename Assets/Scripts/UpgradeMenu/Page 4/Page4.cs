@@ -7,10 +7,17 @@ public class Page4 : MonoBehaviour
 {
     public List<GameObject> achievementWindowList;
     public List<bool> achivementUnlockedStatus;
-    private RewardsHandler rewardsHandler = new RewardsHandler();
+    private RewardsHandler rewardsHandler;
+
+    Page2 page2Handler;
+    Page3 page3Handler;
+
 
     private void Awake() 
     {
+        rewardsHandler = GetComponent<RewardsHandler>();
+        page2Handler = GetComponent<Page2>();
+        page3Handler = GetComponent<Page3>();
         LoadAchievementDataToList();
         EnableRewardButtonsAndBadges();
     }
@@ -63,7 +70,11 @@ public class Page4 : MonoBehaviour
                 entry.transform.Find("Labe_Large_Orange").Find("Achievement_Badge").gameObject.SetActive(true);
             }
         }
-        GetComponent<Page3>().LoadUpgradeData();
+        page2Handler.unlockIngredientsTier2();
+        page2Handler.unlockIngredientsTier3();
+        page3Handler.LoadUpgradeData();
+        
+        
         GetComponent<UpgradeMenuHandler>().UpdateMoney();
     }
 
